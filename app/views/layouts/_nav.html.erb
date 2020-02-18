@@ -1,0 +1,28 @@
+<nav>
+    <div class="ui secondary pointing menu">
+    <%= link_to 'Restaurants', restaurants_path, class: "item " + current_class?(restaurants_path) %>
+        <div class="right menu">
+        <% if user_signed_in? %>
+            <span style="background-color: pink;" class=" ui item ">Hello <%=link_to current_user.first_name, user_path(current_user) %></span> 
+            <% if current_user.received_requests.where(status: :pending).length > 0 %>
+                <div class="notification">
+                    <span class="notification-icon">
+                        <%= link_to '💛', requests_path %>
+                    </span>
+                    <span class="badge"><%= current_user.received_requests.where(status: :pending).length %></span>
+                </div>
+            <% end %>
+            <div class="notification">
+                <span class="notification-icon">
+                    <%= link_to '💌', conversations_path %>
+                </span>
+                <span class="badge"><%= current_user.received_requests.where(status: :pending).length %></span>
+            </div>
+            <%= link_to 'Log Out', destroy_user_session_path, class: "ui item", method: :delete %>
+        <% else %>
+            <%= link_to 'Log In', new_user_session_path, class: "ui item " + current_class?(new_user_session_path) %>
+            <%= link_to 'Sign Up', new_user_registration_path, class: "ui item " + current_class?(new_user_registration_path) %>
+        <% end %>
+        </div>
+    </div>
+</nav>

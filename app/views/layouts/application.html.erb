@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OneStep</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/nav' %>
+    <div class="inbody">
+    <!--
+    <p class="notice">
+      <%#= notice %>
+    </p>
+    <p class="alert">
+      <%#= alert %>
+    </p>
+    -->
+    <% flash.each do |type, message| %>
+      <div class="flash flash-<%= type %>">
+        <% if type == "danger" %>
+          <div class="ui negative message">
+              <%= message %>
+          </div>
+        <% else %>
+          <div class="ui info message">
+              <%= message %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= yield %>
+
+    </div>
+  </body>
+</html>

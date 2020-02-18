@@ -1,0 +1,34 @@
+<div class='container'>
+  <div class='profile'>
+    <h3 class='name'><%= @user.username %></h3>
+    <%# <div class='img'> %>
+      <%= image_tag(@user.images.last, class:'img-fit pic') if @user.images.attached? %>
+    <%# </div> %>
+    <div class='info'>
+      <p><%= @user.sex %></p>
+      <p><%= @user.age %> years old</p>
+      <% if @user == current_user %>
+        <span><%= link_to 'Edit Your Profile', edit_user_registration_path %></span>
+      <% end %>
+  </div>
+</div>
+ <p class='request-button'>
+    <% if @user != current_user %>
+      <% if @request.present? %>
+        <%= link_to 'Cancel Request', request_path(@request), method: :delete %>
+      <% else %>
+        <%= link_to 'Request', user_requests_path(@user), method: :post %>
+      <% end %>
+    <% end %>
+  </p>
+
+  <div class="box">
+   <% if @user.images.attached? %>
+      <% @user.images.each do |img|%>
+      <div style=" position: relative; ">
+        <%= link_to "X", destroy_user_image_path(img), method: "delete", class:"close" %>
+        <%= image_tag img, class: "images" %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>

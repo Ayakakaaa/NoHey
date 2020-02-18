@@ -1,0 +1,31 @@
+<h3>
+    <%= @conversation.other_participants(current_user).map{ |pa| pa.first_name }.join(", ") %>
+</h3>
+<div class="chat">
+    <%if @messages.length > 0 %>
+        <% @messages.each do |message| %>
+            <% if message.sender_id == current_user.id %>
+                <div>
+                    <p class='right'><%= message.content %></p>
+                    <%= image_tag message.image if message.image.attached? %>
+                </div>
+            <% else %>
+                <div>
+                    <p class='left'><%= message.content %></p>
+                     <%= image_tag message.image if message.image.attached? %>
+                    <small>by<%= message.sender.first_name %></small>
+                </div>
+            <% end %>
+        <% end %>
+    <% else %>
+        <h3>No message</h3>
+    <% end %>
+</div>
+<div>
+    <%= form_with model: [@conversation, @new_message], local: true do |form| %>
+        <%= form.text_area :content, placeholder: "type message here", autofocus: true %>
+        <%= form.file_field :image %>
+        <%= form.submit %>
+    <% end %>
+
+</div>

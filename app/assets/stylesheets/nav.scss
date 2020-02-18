@@ -1,0 +1,33 @@
+
+.notification {
+    padding: 0 0.4em;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+  .notification-icon{
+      font-size: 2em;
+      padding-bottom: 0;
+      text-shadow: 2px 2px #afaaaa;
+  }
+  .notification-icon:hover{
+    text-decoration: none; 
+
+  }
+  
+  .notification .badge {
+    position: absolute;
+    top: 0.05em;
+    right: -0.5em;
+    padding: 0.08em 0.4em;
+    border-radius: 50%;
+    background: red;
+    color: white;
+  }
+
+@media only screen and (min-width: 768px) {
+    
+}
+  

@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    const CONVERSATION_ID = <%= @conversation.id %>;
+    const CURRENT_USER_ID = <%= current_user.id %>;
+</script>
+<h3>
+    <%= @conversation.other_participants(current_user).map{ |pa| pa.first_name }.join(", ") %>
+</h3>
+<div id="chat" data-conversation-id="<%= @conversation.id %>">
+    <% @conversation.messages.each do |message| %>
+        <p id="<%=message.id%>"><%= message.content %></p>
+    <% end %>
+
+    <% @messages.each do |message| %>
+        <% if message.sender_id == current_user.id %>
+            <div>
+                <p class='right'><%= message.content %></p>
+                <%= image_tag message.image if message.image.attached? %>
+            </div>
+        <% else %>
+            <div>
+                <p class='left'><%= message.content %></p>
+                    <%= image_tag message.image if message.image.attached? %>
+                <small>by<%= message.sender.first_name %></small>
+            </div>
+        <% end %>
+    <% end %>
+
+</div>
+<div>
+    <%= form_with model: [@conversation, @new_message], remote: true do |form| %>
+        <%= form.text_area :content, placeholder: "type message here", autofocus: true %>
+        <%= form.file_field :image %>
+        <%= form.submit %>
+    <% end %>
+
+</div>

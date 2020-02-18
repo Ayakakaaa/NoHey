@@ -1,0 +1,75 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "semantic-ui";
+ @import "nav";
+ @import "reset";
+ @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap');
+
+ html {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+*,*:before,*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 100%;
+    min-height: 100vh;
+}
+.inbody{
+    padding: 1.5em;
+}
+
+h1,h2,h3,h4,h5{
+    font-family: 'Montserrat', sans-serif;
+    word-wrap: break-word;
+}
+h1{
+    // font-size: 1.802em;
+    font-size: calc(1vw + 1.383em);
+}
+h2{
+    font-size: calc(1vw + 1.296em);
+}
+h3{
+    // font-size: 1.424em;
+    font-size: calc(1vw + 1.215em);
+}
+h4{
+    font-size: calc(1vw + 1.138em);
+}
+h5{
+    font-size: calc(1vw + 1.067em);
+}
+p{
+    font-size: calc(0.2vw + 1em);
+}
+small{
+    font-size: calc(0.2vw + 0.823em);
+   
+}
+
+@media only screen and (min-width: 768px) {
+
+    .inbody{
+        padding: 4em;
+    }
+
+}
+
+
