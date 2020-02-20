@@ -5,26 +5,35 @@
 <h3>
     <%= @conversation.other_participants(current_user).map{ |pa| pa.first_name }.join(", ") %>
 </h3>
-<div id="chat" data-conversation-id="<%= @conversation.id %>">
+<!--
+<div id="chat" data-conversation-id="<%#= @conversation.id %>">
+    <#% @conversation.messages.each do |message| %>
+        <p id="<%#=message.id%>"><%#= message.content %></p>
+    <%# end %>
+-->
+<div id="chat" data-conversation-id="<%= @conversation.id %>" class="conversation-box">
     <% @conversation.messages.each do |message| %>
-        <p id="<%=message.id%>"><%= message.content %></p>
-    <% end %>
-
-    <% @messages.each do |message| %>
         <% if message.sender_id == current_user.id %>
-            <div>
-                <p class='right'><%= message.content %></p>
-                <%= image_tag message.image if message.image.attached? %>
+            <div class='message right'>
+                <p id="<%=message.id%>"><%= message.content %></p>
+                <%if message.image.attached? %>
+                    <%= image_tag message.image, class: "icon-size" %>
+                <% else %>
+                    <%= image_tag 'icon.png', class: "icon-size" %>
+                <% end %>
             </div>
         <% else %>
-            <div>
-                <p class='left'><%= message.content %></p>
-                    <%= image_tag message.image if message.image.attached? %>
+            <div class='message left'>
                 <small>by<%= message.sender.first_name %></small>
+                <p id="<%=message.id%>"><%= message.content %></p>
+                    <%if message.image.attached? %>
+                        <%= image_tag message.image, class: "icon-size" %>
+                    <% else %>
+                        <%= image_tag 'icon.png', class: "icon-size" %>
+                    <% end %>
             </div>
         <% end %>
     <% end %>
-
 </div>
 <div>
     <%= form_with model: [@conversation, @new_message], remote: true do |form| %>
