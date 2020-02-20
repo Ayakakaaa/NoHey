@@ -16,30 +16,30 @@
         <% if message.sender_id == current_user.id %>
             <div class='message right'>
                 <p id="<%=message.id%>"><%= message.content %></p>
-                <%if message.image.attached? %>
+                <% if message.image.attached? %>
                     <%= image_tag message.image, class: "icon-size" %>
                 <% else %>
-                    <%= image_tag 'icon.png', class: "icon-size" %>
+                    <%= image_tag 'icon2.jpeg', class: "icon-size" %>
                 <% end %>
             </div>
         <% else %>
             <div class='message left'>
                 <small>by<%= message.sender.first_name %></small>
                 <p id="<%=message.id%>"><%= message.content %></p>
-                    <%if message.image.attached? %>
-                        <%= image_tag message.image, class: "icon-size" %>
-                    <% else %>
-                        <%= image_tag 'icon.png', class: "icon-size" %>
-                    <% end %>
+                <% if message.image.attached? %>
+                    <%= image_tag message.image, class: "icon-size" %>
+                <% else %>
+                    <%= image_tag 'icon2.jpeg', class: "icon-size" %>
+                <% end %>
             </div>
         <% end %>
     <% end %>
 </div>
+
 <div>
     <%= form_with model: [@conversation, @new_message], remote: true do |form| %>
         <%= form.text_area :content, placeholder: "type message here", autofocus: true %>
         <%= form.file_field :image %>
         <%= form.submit %>
     <% end %>
-
 </div>

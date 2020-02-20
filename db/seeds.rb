@@ -19,7 +19,19 @@ super_user = User.create(
     email: "a@gmail.com",
     password: PASSWORD,
     is_admin: true,
-    avatar:""
+    images:[]
+    # ["https://image.shutterstock.com/image-photo/girl-playing-her-dog-golden-260nw-451774267.jpg"]
+)
+super_user2 = User.create(
+    first_name: "Gabriel",
+    username: "Boss",
+    birth_date: "2000-01-01",
+    sex: "male",
+    email: "g@gmail.com",
+    password: PASSWORD,
+    is_admin: true,
+    images:[]
+    # ["https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lead-short-summer-haircut-gettyimages-492416565-1556829330.jpg?crop=0.494xw:0.987xh;0.324xw,0&resize=640:*"]
 )
 
 
@@ -32,7 +44,7 @@ Restaurant.create(
     address: "2310 Ottawa St",
     phone_number: "604-468-4844",
     website: "whitespot.ca",
-    image: ""
+    images: []
 )
 
 Restaurant.create(
@@ -44,7 +56,7 @@ Restaurant.create(
     address: "777 Thurlow St",
     phone_number: "604-669-1940",
     website: "joefortes.ca",
-    image: ""
+    images: []
 )
 
 Restaurant.create(
@@ -56,7 +68,7 @@ Restaurant.create(
     address: "12 Water St",
     phone_number: "604-696-1111",
     website: "meetonmain.com",
-    image: ""
+    images:[]
 )
 
 sex = ["female", "male", "other"].sample
@@ -71,7 +83,7 @@ sex = ["female", "male", "other"].sample
         sex: sex, 
         email: "#{first_name.downcase}@example.com",
         password: PASSWORD,
-        avatar: ""
+        images:[]
     )
     UserRestaurant.create(user_id: user.id, restaurant_id: Restaurant.all.sample.id)
 end

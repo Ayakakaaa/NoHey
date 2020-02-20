@@ -1,7 +1,11 @@
 <% requests.each do |request| %>
     <div>
         <%=link_to request.requester.first_name, user_path(request.requester) %>
-        <%= image_tag requester.avatar if requester.avatar.attached? %>
+         <%if request.requester.images.attached? %>
+            <%= image_tag request.requester.images.first, class: "icon-size" %>
+        <% else %>
+            <%= image_tag 'icon2.jpeg', class: "icon-size" %>
+        <% end %>
         <button><%= link_to 'Approve', approve_request_path(request), method: :patch %> </button>
         <button><%= link_to 'Reject', reject_request_path(request), method: :patch %> </button>
     </div>

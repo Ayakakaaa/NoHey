@@ -1,9 +1,11 @@
 <div class='container'>
   <div class='profile'>
     <h3 class='name'><%= @user.username %></h3>
-    <%# <div class='img'> %>
-      <%= image_tag(@user.images.last, class:'img-fit pic') if @user.images.attached? %>
-    <%# </div> %>
+    <% if @user.images.attached? %>
+      <%= image_tag(@user.images.last, class:'img-fit pic') %>
+    <% else %>
+          <%= image_tag 'icon2.jpeg', class: "icon-size" %>
+    <% end %>
     <div class='info'>
       <p><%= @user.sex %></p>
       <p><%= @user.age %> years old</p>
