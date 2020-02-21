@@ -17,7 +17,7 @@ class RequestsController < ApplicationController
             conversation = Conversation.create()
             UserConversation.create(conversation_id: conversation.id, user_id: @requested_user.id)
             UserConversation.create(conversation_id: conversation.id, user_id: current_user.id)
-            flash[:success] = "Requested to #{@requested_user.username}!"
+            flash[:success] = "Requested to #{@requested_user.first_name}!"
         else 
             flash[:danger] = request.errors.full_messages.join(", ")
         end 

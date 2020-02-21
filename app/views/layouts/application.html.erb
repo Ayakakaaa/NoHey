@@ -22,17 +22,18 @@
     -->
     <% flash.each do |type, message| %>
       <div class="flash flash-<%= type %>">
-        <% if type == "danger" %>
-          <div class="ui negative message">
+        <% if type == "danger" || type == "alert" %>
+          <div class="negative">
               <%= message %>
           </div>
         <% else %>
-          <div class="ui info message">
+          <div class="success">
               <%= message %>
           </div>
         <% end %>
       </div>
     <% end %>
+
     <%= yield %>
 
     </div>

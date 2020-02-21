@@ -10,7 +10,13 @@
             </div>
         <% elsif received_request.present? %>
             <div>
-                <%= received_request.status %> - I could make some buttons go in here for approve and reject
+                <button>
+                    <%= received_request.status %>
+                </button> 
+                - I could make some buttons go in here for approve and reject
+                 <button>
+                    <%= received_request.status %>
+                </button>
             </div>
         <% end %>
     </div>
