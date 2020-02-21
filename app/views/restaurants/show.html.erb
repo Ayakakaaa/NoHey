@@ -39,9 +39,7 @@
 
 <div style="margin: 1em;">
   <%if can? :crud, @restaurant %>
-    <button>
-      <%= link_to 'Delete', restaurant_path(@restaurant), method: :delete, data:{confirm:'Are you sure?'} %>
-    </button>
+    <%= button_to 'Delete', restaurant_path(@restaurant), method: :delete, data:{confirm:'Are you sure?'} %>
     <button>
       <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
     </button>
@@ -51,10 +49,10 @@
 <div class="like-member">
 <% if user_signed_in? %>
     <% if @user_restaurant.present? %>
-      <%= link_to 'Unlike', user_restaurant_path(@user_restaurant), method: :delete %>
+      <%= button_to 'Unlike', user_restaurant_path(@user_restaurant), method: :delete %>
       <small><%= @restaurant.likers.length %> people are intrested in the restaurant</small>
       <div class="lists">
-        <% @likers.each do |liker| %>
+        <% @restaurant.likers.each do |liker| %>
         <div class="list">
           <%= image_tag "doggo_hey.jpeg", class: "img-fit pic" %>
           <%= link_to liker.username, user_path(liker), class: "middle aligned content" %>
@@ -62,7 +60,7 @@
         <% end %>
       </div>
     <% else %>
-      <%= link_to 'Like', restaurant_user_restaurants_path(@restaurant), method: :post %>
+      <%= button_to 'Like', restaurant_user_restaurants_path(@restaurant), method: :post %>
     <% end %>
   <% end %>
 </div>

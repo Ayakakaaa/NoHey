@@ -13,6 +13,19 @@ class Restaurant < ApplicationRecord
     validates :zip_code, presence: true
     validates :address, presence: true, uniqueness: true
     validates :phone_number, presence: true, uniqueness: true
-    validates :website, presence: true, uniqueness: true
+   
+
+    def tag_names 
+        self.tags.map{ |t| t.name }.join(", ")
+    end
+    
+    def tag_names=(rhs) 
+        self.tags = rhs.strip.split(/\s*,\s*/).map do |tag_name|
+          # Finds the first record with the given attributes, OR 
+          # initializes a record (Tag.new) with the given attributes 
+          # if one is not found. 
+          Tag.find_or_initialize_by(name: tag_name)
+        end
+    end
 
 end
