@@ -5,29 +5,36 @@ Rails.application.routes.draw do
     resources :messages, shallow: :true, only: [:create]
   end
   resources :restaurants do
-    resources :user_restaurants, shallow: true, only: [:create, :destroy]
+    resources :user_restaurants, shallow: true, only: [:create, :destroy, :update]
   end
+
   # devise_for :users
   # custom controller for users
   devise_for :users, controllers: {
         sessions: 'users/sessions',
         registrations: 'users/registrations'
-        
       }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_scope :user do
     root to: "restaurants#index"
+    # get '/users',  to: 'users#index',  as: :users
+    # get '/users/:id', to: 'users#show', as: :user
+    get '/users'  => 'users#index',  as: :users
+    get '/users/:id' => 'users#show', as: :user
+
+    # resources :users, only: [:show, :index] do 
+      resources :requests, shallow: true, only: [:create, :destroy] do
+        patch :approve, on: :member
+        patch :reject, on: :member
+      end
+    # end
+
   end
 
   get "/requests", to: "requests#index"
   delete "/users/image_destroy/:image_id", to: "users#image_destroy", as: "destroy_user_image"
 
-  resources :users, only: [:show, :index] do 
-    resources :requests, shallow: true, only: [:create, :destroy] do
-      patch :approve, on: :member
-      patch :reject, on: :member
-    end
-  end
+
 
   namespace :api, defaults: { format: :json } do 
     # /api...

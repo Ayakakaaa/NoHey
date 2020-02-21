@@ -3,6 +3,19 @@
       <h3 class="title"> <%= @restaurant.name %></h3> 
         <%= image_tag(@restaurant.images.last, class:"img-fit pic-restaurant") if @restaurant.images.attached? %>
       <div class="info">
+      <div>
+        <% unless @restaurant.tags.empty?  %>
+            <p>
+              Tags: 
+              <% @restaurant.tags.each do |tag| %>
+                  <%= link_to(
+                      tag.name, restaurants_path(tag: tag.name),
+                      class: 'badge badge-pill badge-primary'
+                  ) %>
+              <% end %>
+            </p>
+        <% end %>
+      </div>
         <div>
           <small style="font-weight: lighter;">Adress:</small>
           <p><%= @restaurant.address %></p>

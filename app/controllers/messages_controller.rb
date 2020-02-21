@@ -13,8 +13,8 @@ class MessagesController < ApplicationController
                 format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
                 format.js 
             else
-                flash[:danger] = message.errors.full_messages.join(", ")
-                redirect_to @conversation
+                format.html { redirect_to @conversation, alert: message.errors.full_messages.join(", ") } 
+                format.json { render json: @conversation.errors }
             end
         end
     end

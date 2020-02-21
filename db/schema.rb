@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_14_224648) do
+ActiveRecord::Schema.define(version: 2020_02_21_002511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 2020_02_14_224648) do
     t.index ["requester_id"], name: "index_requests_on_requester_id"
   end
 
+  create_table "restaurant_tags", force: :cascade do |t|
+    t.bigint "restaurant_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_restaurant_tags_on_restaurant_id"
+    t.index ["tag_id"], name: "index_restaurant_tags_on_tag_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "country"
@@ -70,6 +79,12 @@ ActiveRecord::Schema.define(version: 2020_02_14_224648) do
     t.string "address"
     t.string "phone_number"
     t.text "website"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -114,6 +129,8 @@ ActiveRecord::Schema.define(version: 2020_02_14_224648) do
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "requests", "users", column: "requested_id"
   add_foreign_key "requests", "users", column: "requester_id"
+  add_foreign_key "restaurant_tags", "restaurants"
+  add_foreign_key "restaurant_tags", "tags"
   add_foreign_key "user_conversations", "conversations"
   add_foreign_key "user_conversations", "users"
   add_foreign_key "user_restaurants", "restaurants"

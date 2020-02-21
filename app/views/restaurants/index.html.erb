@@ -5,9 +5,14 @@
   <% end %>
 
   <div class="search">
-    <input type="text" name="search" spacefolder ="What Would you like to have today?" />
-    <input type="submit" value="search">
-    <div>Tags</div>
+    <% if @tag.present? %>
+        <h6>
+            Showing questions tagged by 
+            <span class="badge badge-pill badge-primary">
+                <%= @tag.name %>
+            </span>
+        </h6>
+    <% end %>
   </div>
 </header>
 
@@ -31,12 +36,6 @@
         </div>
 
         <p><%= link_to 'Interested', restaurant %></p>
-        <div>
-          <% if can? :crud, @restaurant %>
-            <p><%= link_to 'Edit', edit_restaurant_path(restaurant) %></p>
-            <p><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-          <% end %>
-        </div>
       </div>
     </div>
   <% end %>

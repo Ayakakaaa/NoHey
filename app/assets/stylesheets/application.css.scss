@@ -18,6 +18,16 @@
  @import "reset";
  @import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap');
 
+ @import 'bootstrap';
+ @import 'selectize';
+ @import 'selectize.bootstrap3';
+
+ .tag-wrapper {
+    display: inline-block;
+    padding: 0 5px;
+  }
+
+
  html {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
