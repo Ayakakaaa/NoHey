@@ -1,68 +1,81 @@
-<article class = "restaurant-container">
-    <div class = "restaurant">
-      <h3 class="title"> <%= @restaurant.name %></h3> 
-        <%= image_tag(@restaurant.images.last, class:"img-fit pic-restaurant") if @restaurant.images.attached? %>
-      <div class="info">
+<article>
+  <div>
+    <% unless @restaurant.tags.empty? %>
+    Tags: 
+      <% @restaurant.tags.each do |tag| %>
+          <%= link_to(
+              tag.name, restaurants_path(tag: tag.name),
+              class: 'badge badge-pill badge-primary'
+          ) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class = "show-info">
+    <h3> <%= @restaurant.name %></h3>
+    <% if @restaurant.images.attached?  %>
+      <%= image_tag @restaurant.images.last %>
+    <% else %>
+      <%= image_tag "restaurants/restaurantWF.jpg",class: "img-fit" %>
+    <% end %>
+    
+    <div class="info-items">
       <div>
-        <% unless @restaurant.tags.empty?  %>
-            <p>
-              Tags: 
-              <% @restaurant.tags.each do |tag| %>
-                  <%= link_to(
-                      tag.name, restaurants_path(tag: tag.name),
-                      class: 'badge badge-pill badge-primary'
-                  ) %>
-              <% end %>
-            </p>
-        <% end %>
+        <small style="font-weight: lighter;">Adress:</small>
+        <p><%= @restaurant.address %></p>
+        <small><%= @restaurant.city %></small>
+        <small> <%= @restaurant.state %>,<%= @restaurant.country %></small>
+        <small><%= @restaurant.zip_code %></small>
       </div>
-        <div>
-          <small style="font-weight: lighter;">Adress:</small>
-          <p><%= @restaurant.address %></p>
-          <small><%= @restaurant.city %></small>
-          <small> <%= @restaurant.state %>,<%= @restaurant.country %></small>
-          <small><%= @restaurant.zip_code %></small>
-        </div>
 
-        <div>
-           <small style="font-weight: lighter;">Phone:</small>
-          <p><%= @restaurant.phone_number %></p>
-        </div>
+      <div>
+        <small style="font-weight: lighter;">Phone:</small>
+        <p><%= @restaurant.phone_number %></p>
+      </div>
 
-        <div>
-         <small style="font-weight: lighter;">Website: </small>
-          <p><%=link_to @restaurant.website, @restaurant.website %></p>
-        </div>
+      <div>
+        <small style="font-weight: lighter;">Website: </small>
+        <p><%=link_to @restaurant.website, @restaurant.website %></p>
       </div>
     </div>
+  </div>
 </article>
 
-<div style="margin: 1em;">
   <%if can? :crud, @restaurant %>
-    <%= button_to 'Delete', restaurant_path(@restaurant), method: :delete, data:{confirm:'Are you sure?'} %>
+    <%= button_to 'Delete', restaurant_path(@restaurant), method: :delete, class: "button" %>
     <button>
-      <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
+      <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "button" %>
     </button>
   <% end %>
-</div>
 
-<div class="like-member">
-<% if user_signed_in? %>
-    <% if @user_restaurant.present? %>
-      <%= button_to 'Unlike', user_restaurant_path(@user_restaurant), method: :delete %>
-      <small><%= @restaurant.likers.length %> people are intrested in the restaurant</small>
-      <div class="lists">
+
+  <div class="like-member">
+    <% if user_signed_in? %>
+      <% if @user_restaurant.present? %>
+        <%= button_to 'Unlike', user_restaurant_path(@user_restaurant), method: :delete %>
+        <small><%= @restaurant.likers.length %> people are intrested in the restaurant</small>
+      <div>
         <% @restaurant.likers.each do |liker| %>
-        <div class="list">
-          <%= image_tag "doggo_hey.jpeg", class: "img-fit pic" %>
-          <%= link_to liker.username, user_path(liker), class: "middle aligned content" %>
-        </div>
+          <div class="lists">
+            <% if liker.username != current_user %>
+              <% if liker.images.attached? %>
+                <%= image_tag liker.images.first, class: "img-fit pic" %>
+                <%= link_to liker.username, user_path(liker), class: "middle aligned content" %>
+              <% else %>
+                <%= image_tag "doggo_hey.jpeg", class: "img-fit pic" %>
+                <p><%= liker.username %></p>
+              <% end %>
+            <% else %>
+              <%= image_tag "doggo_hey.jpeg", class: "img-fit pic" %>
+              <%= link_to liker.username, user_path(liker), class: "middle aligned content" %>
+            <% end %>
+          </div>
         <% end %>
       </div>
     <% else %>
       <%= button_to 'Like', restaurant_user_restaurants_path(@restaurant), method: :post %>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
 
-<%= link_to 'Back', restaurants_path %>
+  <%= link_to 'Back', restaurants_path %>

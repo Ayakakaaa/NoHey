@@ -57,8 +57,8 @@
   </div>
 
   <div>
-    <%= form.label :tag_names %>
-    <%= form.text_field :tag_names %>
+    <%#= form.label :tag_names %>
+    <%#= form.text_field :tag_names %>
   </div>
 
 
@@ -72,17 +72,22 @@
     // https://selectize.github.io/selectize.js/
     // For description of options that are usable go to:
     // https://github.com/selectize/selectize.js/blob/master/docs/usage.md
-    $('#restaurant_tag_names').selectize({
-        delimiter: ',',
-        persist: false,
-        labelField: "name",
-        valueField: "name",
-        searchField: "name",
-        options: <%= Tag.select(:name).to_json(except: [:id]).html_safe %>,
-        create: function(input) {
-            return {
-                name: input
-            }
-        }
-    });
-</script>
+    
+    
+//     $(document).ready(function(){
+
+//       $('#restaurant_tag_names').selectize({
+//           delimiter: ',',
+//           persist: false,
+//           labelField: "name",
+//           valueField: "name",
+//           searchField: "name",
+//           options: <%#= Tag.select(:name).to_json(except: [:id]).html_safe %>,
+//           create: function(input) {
+//               return {
+//                   name: input
+//               }
+//           }
+//       });
+//     });
+// </script>

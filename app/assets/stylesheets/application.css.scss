@@ -41,6 +41,15 @@ body {
     font-size: 100%;
     min-height: 100vh;
 }
+body {
+    a:visited {text-decoration:none }
+    a:hover { 
+        text-decoration:none; 
+        background-color: transparent;
+        font-weight: bolder; 
+    }
+    a:active {text-decoration:none }
+}
 .inbody{
     padding: 1.5em;
 }
@@ -73,6 +82,7 @@ small{
     font-size: calc(0.2vw + 0.823em);
    
 }
+
 .negative{
     border: 1px solid red;
     background-color: pink;

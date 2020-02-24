@@ -1,0 +1,44 @@
+<div>
+<% users = conversation.users.where.not(id: current_user.id) %>
+<% sent_request = Request.find_by(requester_id: current_user.id, requested_id: users.first.id, status: :pending) %>
+<% received_request = Request.find_by(requester_id: users.first.id, requested_id: current_user.id, status: :pending) %>
+            <% users.each do |u| %>
+                <% if u.images.attached? %>
+                    <% if sent_request.present? %>
+                        <%= image_tag u.images.first, class: "icon-size wait" %>
+                        <%= link_to u.first_name, user_path(u), class: ""%>
+                        <%= sent_request.status %>
+                    <% elsif received_request.present? %>
+                        <%= image_tag u.images.first, class: "icon-size wait" %>
+                        <%= link_to u.first_name, conversation_path(conversation), class: ""%>
+                        <button class="button">
+                            <%= received_request.status %>
+                        </button> 
+                        - I could make some buttons go in here for approve and reject
+                        <button class="button"> 
+                            <%= received_request.status %>
+                        </button>
+                    <% end %>
+                <% elsif !u.images.attached? %>
+                    <% if sent_request.present? %>
+                        <%= image_tag 'icon2.jpeg', class: "icon-size wait" %>
+                        <%= link_to u.first_name, user_path(u), class: ""%>
+                        <div>
+                            <%= sent_request.status %>
+                        </div>
+                    <% elsif received_request.present? %>
+                        <div>
+                            <%= image_tag 'icon2.jpeg', class: "icon-size wait" %>
+                            <%= link_to u.first_name, conversation_path(conversation), class: ""%>
+                            <button class="button">
+                                <%= received_request.status %>
+                            </button> 
+                            - I could make some buttons go in here for approve and reject
+                            <button class="button"> 
+                                <%= received_request.status %>
+                            </button>
+                        </div>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </div>
