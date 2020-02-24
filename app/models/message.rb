@@ -10,7 +10,7 @@ class Message < ApplicationRecord
   validate(:no_hey)
 
   # scope(:recent, lambda { order(created_at: :desc).limit(10) })
-  scope(:recent, -> { order(created_at: :desc).limit(10) })
+  # scope(:recent, -> { order(created_at: :desc).limit(10) })
 
 
   private

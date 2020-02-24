@@ -38,7 +38,7 @@ class Api::V1::UsersController < ApplicationController
         :first_name, 
         :username, 
         :birth_date,
-        :sex,
+        :sex, 
         :email,
         :password,
         :password_confirmation,

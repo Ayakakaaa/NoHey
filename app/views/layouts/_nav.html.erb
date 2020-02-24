@@ -18,7 +18,7 @@
                 </span>
                 <span class="badge"><%= current_user.received_requests.where(status: :pending).length %></span>
             </div>
-            <%= link_to 'Log Out', destroy_user_session_path, class: "ui item", method: :delete %>
+            <%= button_to 'Log Out', destroy_user_session_path, class: "ui item", method: :delete %>
         <% else %>
             <%= link_to 'Log In', new_user_session_path, class: "ui item " + current_class?(new_user_session_path) %>
             <%= link_to 'Sign Up', new_user_registration_path, class: "ui item " + current_class?(new_user_registration_path) %>

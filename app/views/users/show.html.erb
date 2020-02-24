@@ -17,9 +17,9 @@
  <p class='request-button'>
     <% if @user != current_user %>
       <% if @request.present? %>
-        <%= link_to 'Cancel Request', request_path(@request), method: :delete %>
+        <%= button_to 'Cancel Request', request_path(@request), method: :delete %>
       <% else %>
-        <%= link_to 'Request', user_requests_path(@user), method: :post %>
+        <%= button_to 'Request', user_requests_path(@user), method: :post %>
       <% end %>
     <% end %>
   </p>

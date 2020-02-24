@@ -1,3 +1,6 @@
+<div class="flash-title">
+  <p> NO HEY </p>
+</div>
 
 <header class="header-restaurant">
   <% if can? :crud, @restaurant %>
@@ -5,9 +8,14 @@
   <% end %>
 
   <div class="search">
-    <input type="text" name="search" spacefolder ="What Would you like to have today?" />
-    <input type="submit" value="search">
-    <div>Tags</div>
+    <% if @tag.present? %>
+        <h6>
+            Showing restaurants tagged by 
+            <span class="badge badge-pill badge-primary">
+                <%= @tag.name %>
+            </span>
+        </h6>
+    <% end %>
   </div>
 </header>
 
@@ -15,29 +23,19 @@
 <article class = "restaurant-container">
   <% @restaurants.each do |restaurant| %>
     <div class = "restaurant">
-      <h3 class="title"> <%= restaurant.name %></h3> 
-        <%= image_tag(restaurant.images.last, class: "img-fit pic-restaurant") if restaurant.images.attached? %>
-       
-
-      <div class="info">
-        <div>
-          <small style="font-weight: lighter;">City:</small>
-          <small><%= restaurant.city %></small>
-        </div>
-
-        <div>
-         <small style="font-weight: lighter;">Website: </small>
-          <p><%=link_to restaurant.website, restaurant.website %></p>
-        </div>
-
-        <p><%= link_to 'Interested', restaurant %></p>
-        <div>
-          <% if can? :crud, @restaurant %>
-            <p><%= link_to 'Edit', edit_restaurant_path(restaurant) %></p>
-            <p><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-          <% end %>
-        </div>
+      <div class="title">
+        <h3> <%= restaurant.name %></h3> 
+        <small style="font-weight: lighter;">City:</small>
+        <small><%= restaurant.city %></small>
       </div>
+      <div>
+        <% if restaurant.images.attached?  %>
+          <%= image_tag restaurant.images.last, class: "img-fit pic-restaurant" %>
+        <% else %>
+          <%= image_tag "restaurants/restaurantWF.jpg", class: "img-fit pic-restaurant" %>
+        <% end %>
+      </div>
+      <%= link_to 'Interested', restaurant_path(restaurant), class: "interested" %></p>
     </div>
   <% end %>
 </article>

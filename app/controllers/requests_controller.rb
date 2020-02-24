@@ -19,7 +19,7 @@ class RequestsController < ApplicationController
             UserConversation.create(conversation_id: conversation.id, user_id: current_user.id)
             flash[:success] = "Requested to #{@requested_user.first_name}!"
         else 
-            flash[:danger] = request.errors.full_messages.join(", ")
+            flash[:alert] = request.errors.full_messages.join(", ")
         end 
         redirect_to @requested_user     
     end

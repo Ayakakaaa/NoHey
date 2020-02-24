@@ -1,31 +1,25 @@
+<h5><%= current_user.contacts.length %> user.contacts</h5>
+
 <% @conversations.each do |conversation| %>
-    <div class="message-button">
+
+    <div class="request-container">
         <% users = conversation.users.where.not(id: current_user.id) %>
-        <% sent_request = Request.find_by(requester_id: current_user.id, requested_id: users.first.id, status: :pending) %>
-        <% received_request = Request.find_by(requester_id: users.first.id, requested_id: current_user.id, status: :pending) %>
-        <%= link_to users.map{|u| u.first_name}.join(", "), conversation_path(conversation) %>
-        <% if sent_request.present? %>
-            <div>
-                <%= sent_request.status %>
+            <% users.each do |u| %>
+            <div class="request-item">
+                <% if u.images.attached? %>
+                    <%= image_tag u.images.first, class:"img-fit p-image" %>
+                    <%= link_to u.first_name, conversation_path(conversation), class: "pertner"%>
+                <% else %>
+                    <%= image_tag 'icon2.jpg', class:"img-fit p-image" %>
+                    <%= link_to u.first_name, conversation_path(conversation), class: "pertner"%>
+                <% end %>
             </div>
-        <% elsif received_request.present? %>
-            <div>
-                <button>
-                    <%= received_request.status %>
-                </button> 
-                - I could make some buttons go in here for approve and reject
-                 <button>
-                    <%= received_request.status %>
-                </button>
-            </div>
-        <% end %>
+            <% end %>
+        </div>
     </div>
+
 <% end %>
-<h1><%= current_user.contacts.length %> user.contacts</h1>
-<h1>
-    <% current_user.contacts.each do |c| %>
-        <%= c.first_name %>
-    <% end %>
-</h1>
+
+
 
 
