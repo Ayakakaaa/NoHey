@@ -2,15 +2,10 @@
     const CONVERSATION_ID = <%= @conversation.id %>;
     const CURRENT_USER_ID = <%= current_user.id %>;
 </script>
-<div>
+<div class="conversation-container">
+<div class="sender sender2">
     <%  @conversation.other_participants(current_user).each do |pa| %>
-        <% if pa.images.attached? %>
-            <h3><%= pa.first_name %></h3>
-            <%= image_tag pa.images.first, class: "pic" %>
-        <% else %>
-            <h3><%= pa.first_name %></h3>
-            <%= image_tag 'icon2.jpeg', class: "pic wait" %>
-        <% end %>  
+        <h1 class="sender-name"><%= link_to pa.first_name, user_path(pa) %></h1>
     <% end %>
 </div>
 
@@ -36,6 +31,7 @@
                     </div>
                 </div>
             </div>
+            <p class="time1"><%= time_ago_in_words(message.created_at)%> ago</p>
         <% else %>
             <div class='mycomment'>
                 <p>
@@ -45,14 +41,17 @@
                     <span id="<%=message.id%>"><%= message.content %></span>
                 </p>
             </div>
+            <p class="time2"><%= time_ago_in_words(message.created_at)%> ago</p>
         <% end %>
     <% end %>
 </div>
 
-<div>
+<div class="send-form">
     <%= form_with model: [@conversation, @new_message], remote: true do |form| %>
-        <%= form.text_area :content, placeholder: "type message here", autofocus: true %>
+        <%= form.text_area :content, placeholder: "type message here", autofocus: true, class:"message-box" %>
         <%= form.file_field :image %>
-        <%= form.submit %>
+        <%= form.submit '📨', class: 'btn-gradient-3d-orange' %>
     <% end %>
 </div>
+</div>
+

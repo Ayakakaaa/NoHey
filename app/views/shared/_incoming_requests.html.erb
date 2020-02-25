@@ -6,7 +6,7 @@
         <% else %>
             <%= image_tag 'icon2.jpeg', class: "icon-size" %>
         <% end %>
-        <button><%= link_to 'Approve', approve_request_path(request), method: :patch %> </button>
-        <button><%= link_to 'Reject', reject_request_path(request), method: :patch %> </button>
+        <%= link_to 'Approve', approve_request_path(request), method: :patch, class: 'btn-gradient-3d-orange' %>
+        <%= link_to 'Reject', reject_request_path(request), method: :patch, class: 'btn-gradient-3d-orange' %>
     </div>
 <% end %>

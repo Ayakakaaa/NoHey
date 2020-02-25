@@ -7,21 +7,23 @@ $(document).ready( function () {
     }, {
     connected() {
       // Called when the subscription is ready for use on the server
+      
+
     },
 
     disconnected() {
       // Called when the subscription has been terminated by the server
     },
 
-    received({message,image, sender_image}) {
+    received({message, image, sender_image,time_ago}) {
       // Called when there's incoming data on the websocket for this channel
       console.log("data coming in!");
       console.log(message);
       console.log(image);
       console.log(sender_image);
+      console.log(time_ago);
 
-      const p = document.createElement('p')
-      p.innerText = message.content;
+      document.querySelector('#chat').classList.add("conversation-box")
 
       const picture = document.createElement('img')
       picture.classList.add('img-fit')
@@ -30,50 +32,75 @@ $(document).ready( function () {
       let avatar = document.createElement('div')
       avatar.classList.add('chat-pic')
 
+      const senderImage = document.createElement('img')
+      senderImage.classList.add('pic')
+      senderImage.setAttribute("src", sender_image)
+
+
       const leftMessage = document.createElement('div')
       leftMessage.classList.add('left-message');
-      console.log(leftMessage)
+      // console.log(leftMessage)
 
       const item = document.createElement('div');
       item.classList.add('says');
-      console.log(item)
+      // console.log(item)
+
+      const s = document.createElement('span')
+      s.innerText = message.content;
+
+      const p = document.createElement('p')
 
       const leftBox = document.createElement('div');
       leftBox.classList.add('left-box');
-      leftBox.appendChild(item)
-      console.log(leftBox)
+      // console.log(leftBox)
 
       const mycomment = document.createElement('div')
       mycomment.classList.add('mycomment')
-      console.log(mycomment)
+      // console.log(mycomment)
 
-      
+      const time1 = document.createElement('small')
+      time1.classList.add('time1')
+      time1.innerText = `${time_ago} ago`
 
-      // if(CURRENT_USER_ID == message.sender_id){
-          leftMessage.appendChild(avatar)
-          leftMessage.appendChild(leftBox)
-          if(message){
+      const time2 = document.createElement('small')
+      time2.classList.add('time2')
+      time2.innerText = `${time_ago} ago`
 
-            item.appendChild(p)
-            
-          }
-          if(image){
-            item.appendChild(picture)
 
-          }
-          // leftMessage.appendChild(p)
-          console.log(p)
+      if(CURRENT_USER_ID !== message.sender_id){
+        if(message){
+          p.appendChild(s)
+        }
+        if(image){
+          p.appendChild(picture)
+        }
+        avatar.appendChild(senderImage)
+        console.log(avatar)
+        leftMessage.appendChild(avatar)
+        item.appendChild(p)
+        leftBox.appendChild(item)
+        leftMessage.appendChild(leftBox)
+        leftMessage.appendChild(time)
+
+        // console.log(p)
         console.log(leftMessage)
-       
-      // }
+        document.getElementById("chat").appendChild(leftMessage);
+        document.getElementById("chat").appendChild(time1);
 
-
-
-  
-      document.getElementById("chat").appendChild(leftMessage);
-
-
-
+        }else{
+        mycomment.appendChild(p)
+        if(message){
+          p.appendChild(s)
+          mycomment.appendChild(p)
+        }
+        if(image){
+          p.appendChild(picture)
+          mycomment.appendChild(p)
+        }
+        console.log(mycomment)
+        document.getElementById("chat").appendChild(mycomment);
+        document.getElementById("chat").appendChild(time2);
+      }
     }
   });
 })

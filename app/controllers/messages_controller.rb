@@ -12,14 +12,14 @@ class MessagesController < ApplicationController
                 if message.image.attached?
                     img_url = url_for(message.image)
                 end
-
+                time_ago = ActionController::Base.helpers.time_ago_in_words(message.created_at)
                 sender_img_url = ActionController::Base.helpers.image_url('icon2.jpeg')
                 if current_user.images.attached?
                     sender_img_url = url_for(current_user.images.first)
                 else
                     
                 end
-                ActionCable.server.broadcast "conversation_channel_#{@conversation.id}", message: message, image: img_url, sender_image: sender_img_url
+                ActionCable.server.broadcast "conversation_channel_#{@conversation.id}", message: message, image: img_url, sender_image: sender_img_url, time_ago: time_ago
                 flash[:notice]="Message sent 📩"
                 format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
                 format.js 

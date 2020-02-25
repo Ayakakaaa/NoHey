@@ -42,17 +42,16 @@
 </article>
 
   <%if can? :crud, @restaurant %>
-    <%= button_to 'Delete', restaurant_path(@restaurant), method: :delete, class: "button" %>
-    <button>
-      <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "button" %>
-    </button>
+    <%= button_to 'Delete', restaurant_path(@restaurant), method: :delete, class: 'btn-gradient-3d-orange' %>
+    <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: 'btn-gradient-3d-orange' %>
+  
   <% end %>
 
 
   <div class="like-member">
     <% if user_signed_in? %>
       <% if @user_restaurant.present? %>
-        <%= button_to 'Unlike', user_restaurant_path(@user_restaurant), method: :delete %>
+        <%= button_to 'Unlike', user_restaurant_path(@user_restaurant), method: :delete, class: 'btn-gradient-3d-orange', style: 'background-image: linear-gradient(#6795fd 0%, #67ceff 100%);'%>
         <small><%= @restaurant.likers.length %> people are intrested in the restaurant</small>
       <div>
         <% @restaurant.likers.each do |liker| %>
@@ -73,7 +72,7 @@
         <% end %>
       </div>
     <% else %>
-      <%= button_to 'Like', restaurant_user_restaurants_path(@restaurant), method: :post %>
+      <%= button_to 'Like', restaurant_user_restaurants_path(@restaurant), method: :post , class: 'btn-gradient-3d-orange', style: 'background-image: linear-gradient(#fed6e3 0%, #ffaaaa 100%);'%>
       <% end %>
     <% end %>
   </div>

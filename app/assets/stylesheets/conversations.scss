@@ -1,3 +1,39 @@
+.conversation-container{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5em 1fr 10em;
+  gap: 1em;
+}
+
+//header
+.sender2{
+  color: rgb(46, 45, 45);
+  display: flex;
+  align-items: center;
+}
+.sender-img{
+  width: 7em;
+  height: 7em;
+}
+.sender-name{
+  font-weight: bolder;
+  font-style: italic;
+  font-size: 4em;
+}
+.sender2:before, .sender2:after{
+  content: "";
+  flex-grow: 1;
+  height: 3px;
+  display: block;
+}
+.sender2:before{
+  margin-right: 4em;
+  background: linear-gradient(-90deg, #888, transparent);
+}
+.sender2:after{
+  margin-left: 4em;
+	background: linear-gradient(90deg, #888, transparent);
+}
 .message-button{
     padding: 1em;
     border-radius: 1px;
@@ -5,55 +41,48 @@
     display: grid;
     grid-column: 1fr 20% 20%;
 }
-// .conversation-box{
-//     display: grid;
-//     grid-template-columns: 1fr 1fr;
-//     padding: 3em;
-//     gap: 2em;
-// }
+
 .message{
     display: grid;
     gap: 1em;
     padding: 1em;
 }
 
-.icon-size{
+.img-fit,.icon-size{
     width: 100%;
     height: 100%;
     object-fit: cover;
-   
 }
 
-.img-fit {
-  max-width: 100%;
-}
+// .img-fit {
+//   max-width: 100%;
+// }
 
 
-
+//conversation show
 .conversation-box {
-    max-width: 100%;
-    padding: 0 2em;
-    margin: 0.1em auto;
     text-align: right;
-    font-size: 14px;
+    flex: 1;
   }
   
   /*以下、②左側のコメント*/
   .left-message {
     width: 100%;
-    margin: 10px 0;
     overflow: hidden;
+    margin-bottom: 0;
   }
   
   .left-message .chat-pic {
     float: left;
-    margin-right: -50px;
-    width: 40px;
+    margin-right: -3.4em;
+    background-position: center center;
   }
   
   .left-message .chat-pic .pic{
     width: 100%;
     height: auto;
+    width: 5em;
+    height: 5em;
     border-radius: 50%;
   }
   .left-message .left-box {
@@ -63,11 +92,14 @@
   .says {
     display: inline-block;
     position: relative; 
-    margin: 0 0 0 50px;
+    margin: 0 0 0 3em;
     padding: 10px;
-    max-width: 100%;
+    max-width: 250px;
     border-radius: 12px;
-    background: #edf1ee;
+    background: #e3eef5;
+    top: 1em;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
   }
   
   .says:after {
@@ -77,13 +109,24 @@
     top: 3px; 
     left: -19px;
     border: 8px solid transparent;
-    border-right: 18px solid #edf1ee;
+    border-right: 18px solid #e3eef5;
     -webkit-transform: rotate(35deg);
     transform: rotate(35deg);
   }
   .says p {
     margin: 0;
-    padding: 0;
+    padding: 0.2em;
+    font-size: 1.2em;
+  }
+  .time1{
+    text-align: left;
+    margin-bottom: 2em;
+    font-size: small;
+  }
+  .time2{
+    text-align: right;
+    margin-bottom: 2em;
+    font-size: small;
   }
   
   /*以下、③右側の緑コメント*/
@@ -98,7 +141,9 @@
     max-width: 250px;
     border-radius: 12px;
     background: #30e852;
-    font-size: 15px;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
   }
   
   .mycomment p:after {
@@ -128,21 +173,65 @@
   grid-template-columns: 40% 50%;
   grid-template-rows: 5em;
   column-gap: 2em;
-
   padding: 1em;
   border-bottom: darkslategrey;
 }
+
+//message-box
+.send-form{
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+form{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 0.5em;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  background-color: black;
+  display: inline-block;
+}
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: red;
+}
+
 
   
 
 
 @media only screen and (min-width: 768px) {
+
   .request-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     align-items: center;
     gap: 5em;
-}
+  }
+  .says{
+    max-width: 100%;
+  }
+
     
 }
