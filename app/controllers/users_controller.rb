@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :find_user, only: [:show, :edit, :image_destroy]
+    before_action :authorize!
 
     def show
         @request = Request.where(requester_id: current_user.id, requested_id: @user.id).last
@@ -35,4 +36,10 @@ class UsersController < ApplicationController
     def find_user
         @user = User.find_by(id: params[:id])
     end
+
+    def authorize! 
+        unless can?(:crud, @user)
+            redirect_to root_path, alert: 'Not Authorized' 
+        end
+      end
 end

@@ -28,8 +28,10 @@
    <% if @user.images.attached? %>
       <% @user.images.each do |img|%>
       <div style=" position: relative; ">
+      <% if @user == current_user %>
         <%= link_to "X", destroy_user_image_path(img), method: "delete", class:"close" %>
-        <%= image_tag img, class: "images" %>
+      <% end %>
+      <%= image_tag img, class: "images" %>
       </div>
       <% end %>
     <% end %>

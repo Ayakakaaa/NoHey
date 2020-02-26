@@ -41,6 +41,15 @@
     <%= form.text_field :address %>
   </div>
 
+  <div>
+    <%= form.label :Latitude %>
+    <%= form.number_field :lat, step: :any %>
+  </div>
+  <div>
+    <%= form.label :Longitude %>
+    <%= form.number_field :lon, step: :any %>
+  </div>
+
   <div class="field">
     <%= form.label :phone_number %>
     <%= form.text_field :phone_number %>
@@ -51,7 +60,7 @@
     <%= form.text_area :website %>
   </div>
 
-   <div>
+  <div>
     <%= form.label :images %>
     <%= form.file_field :images, multiple: true %>
   </div>

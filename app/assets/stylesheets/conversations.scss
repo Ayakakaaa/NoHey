@@ -54,129 +54,103 @@
     object-fit: cover;
 }
 
-// .img-fit {
-//   max-width: 100%;
-// }
-
-
 //conversation show
 .conversation-box {
-    text-align: right;
-    flex: 1;
-  }
+  text-align: right;
+  flex: 1;
+}
   
-  /*以下、②左側のコメント*/
-  .left-message {
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 0;
-  }
-  
-  .left-message .chat-pic {
-    float: left;
-    margin-right: -3.4em;
-    background-position: center center;
-  }
-  
-  .left-message .chat-pic .pic{
-    width: 100%;
-    height: auto;
-    width: 5em;
-    height: 5em;
-    border-radius: 50%;
-  }
-  .left-message .left-box {
-    width: 100%;
-    text-align: left;
-  }
-  .says {
-    display: inline-block;
-    position: relative; 
-    margin: 0 0 0 3em;
-    padding: 10px;
-    max-width: 250px;
-    border-radius: 12px;
-    background: #e3eef5;
-    top: 1em;
-    border: 1px solid #ccc;
-    box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
-  }
-  
-  .says:after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    top: 3px; 
-    left: -19px;
-    border: 8px solid transparent;
-    border-right: 18px solid #e3eef5;
-    -webkit-transform: rotate(35deg);
-    transform: rotate(35deg);
-  }
-  .says p {
-    margin: 0;
-    padding: 0.2em;
-    font-size: 1.2em;
-  }
-  .time1{
-    text-align: left;
-    margin-bottom: 2em;
-    font-size: small;
-  }
-  .time2{
-    text-align: right;
-    margin-bottom: 2em;
-    font-size: small;
-  }
-  
-  /*以下、③右側の緑コメント*/
-  .mycomment {
-    margin: 10px 0;
-  }
-  .mycomment p {
-    display: inline-block;
-    position: relative; 
-    margin: 0 10px 0 0;
-    padding: 8px;
-    max-width: 250px;
-    border-radius: 12px;
-    background: #30e852;
-    font-size: 1.2em;
-    border: 1px solid #ccc;
-    box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
-  }
-  
-  .mycomment p:after {
-    content: "";
-    position: absolute;
-    top: 3px; 
-    right: -19px;
-    border: 8px solid transparent;
-    border-left: 18px solid #30e852;
-    -webkit-transform: rotate(-35deg);
-    transform: rotate(-35deg);
-  }
-
-
-  //index
-
-  .request-container{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    align-items: center;
-    gap: 1em;
+/*以下、②左側のコメント*/
+.left-message {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 0;
 }
 
-.request-item{
-  display: grid;
-  grid-template-columns: 40% 50%;
-  grid-template-rows: 5em;
-  column-gap: 2em;
-  padding: 1em;
-  border-bottom: darkslategrey;
+.left-message .chat-pic {
+  float: left;
+  margin-right: -3.4em;
+  background-position: center center;
 }
 
+.left-message .chat-pic .pic{
+  width: 100%;
+  height: auto;
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+}
+.left-message .left-box {
+  width: 100%;
+  text-align: left;
+}
+.says {
+  display: inline-block;
+  position: relative; 
+  margin: 0 0 0 3em;
+  padding: 10px;
+  max-width: 250px;
+  border-radius: 12px;
+  background: #e3eef5;
+  top: 1em;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+
+.says:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 3px; 
+  left: -19px;
+  border: 8px solid transparent;
+  border-right: 18px solid #e3eef5;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
+}
+.says p {
+  margin: 0;
+  padding: 0.2em;
+  font-size: 1.2em;
+}
+.time1{
+  text-align: left;
+  margin-bottom: 2em;
+  font-size: small;
+}
+.time2{
+  text-align: right;
+  margin-bottom: 2em;
+  font-size: small;
+}
+
+/*以下、③右側の緑コメント*/
+.mycomment {
+  margin: 10px 0;
+}
+.mycomment p {
+  display: inline-block;
+  position: relative; 
+  margin: 0 10px 0 0;
+  padding: 8px;
+  max-width: 250px;
+  border-radius: 12px;
+  background: #30e852;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+}
+
+.mycomment p:after {
+  content: "";
+  position: absolute;
+  top: 3px; 
+  right: -19px;
+  border: 8px solid transparent;
+  border-left: 18px solid #30e852;
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
+}
 //message-box
 .send-form{
   display: flex;
@@ -190,45 +164,74 @@ form{
   gap: 0.5em;
 }
 
-.inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+
+//index
+.c-container{
+  display: flex;
+  flex-direction: column;
 }
 
-.inputfile + label {
-  font-size: 1.25em;
-  font-weight: 700;
-  color: white;
-  background-color: black;
+.c-members{
+  display: grid;
+  grid-template-columns: 50% 1fr 30%;
+  grid-template-rows: auto;
+  padding: 1em 0em 1em 4em;
+  gap: 1em;
+  border-bottom: darkslategrey;
+}
+.p-image{
+  width: 6.5em;
+  height: 6.5em;
+  border-radius: 50%;
+}
+.pertner{
+  align-self: stretch;
+}
+.spinner {
+  margin: 100px auto 0;
+  width: 70px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+
+  border-radius: 100%;
   display: inline-block;
-}
-.inputfile:focus + label {
-	outline: 1px dotted #000;
-	outline: -webkit-focus-ring-color auto 5px;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
 
-.inputfile:focus + label,
-.inputfile + label:hover {
-  background-color: red;
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
 }
 
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
 
   
-
-
 @media only screen and (min-width: 768px) {
 
-  .request-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    align-items: center;
-    gap: 5em;
-  }
   .says{
     max-width: 100%;
   }

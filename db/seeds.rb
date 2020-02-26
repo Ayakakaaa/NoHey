@@ -42,6 +42,8 @@ Restaurant.create(
     city: "Port Coquitlam",
     zip_code: "V3B 7Z1",
     address: "2310 Ottawa St",
+    lat: 49.2560713,
+    lon: -122.7464027,
     phone_number: "604-468-4844",
     website: "whitespot.ca",
     images: []
@@ -54,6 +56,8 @@ Restaurant.create(
     city: "Vancouver",
     zip_code: "V6E 3V5",
     address: "777 Thurlow St",
+    lat: 49.2849406,
+    lon: -123.1247733,
     phone_number: "604-669-1940",
     website: "joefortes.ca",
     images: []
@@ -66,8 +70,24 @@ Restaurant.create(
     city: "Vancouver",
     zip_code: "V6B 4K7",
     address: "12 Water St",
+    lat: 49.2481866,
+    lon: -123.1905705,
     phone_number: "604-696-1111",
     website: "meetonmain.com",
+    images:[]
+)
+
+Restaurant.create(
+    name: "Kai Japanese Restaurant",
+    country: "Canada",
+    state: "BC",
+    city: "Port Coquitlam",
+    zip_code: "V3B 0G9",
+    address: "863 Village Dr #160",
+    lat: 49.2764903,
+    lon: -122.8498796,
+    phone_number: "(604) 554-0282",
+    website: "kairestaurant.ca",
     images:[]
 )
 
