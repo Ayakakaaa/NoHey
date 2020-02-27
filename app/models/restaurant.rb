@@ -12,6 +12,8 @@ class Restaurant < ApplicationRecord
     validates :city, presence: true
     validates :zip_code, presence: true
     validates :address, presence: true, uniqueness: true
+    validates :lat, presence: true, uniqueness: true
+    validates :lon, presence: true, uniqueness: true
     validates :phone_number, presence: true, uniqueness: true
    
 

@@ -3,7 +3,7 @@
     <%= link_to 'Restaurants', restaurants_path, class: "item " + current_class?(restaurants_path) %>
         <div class="right menu">
         <% if user_signed_in? %>
-            <span style="background-color: pink;" class=" ui item ">Hello <%= link_to current_user.first_name, user_path(current_user), style: "padding-left: 0.5em;" %></span> 
+            <span class=" ui item ">Hello <%= link_to current_user.first_name, user_path(current_user), class:"u-name" %></span> 
             <% if current_user.received_requests.where(status: :pending).length > 0 %>
                 <div class="notification">
                     <span class="notification-icon">
@@ -16,7 +16,7 @@
                 <span class="notification-icon">
                     <%= link_to '💌', conversations_path %>
                 </span>
-                <% if unchecked_conversations.length %>
+                <% if unchecked_conversations.length > 0 %>
                     <span class="badge"><%= unchecked_conversations.length %></span>
                 <% end %>
             </div>

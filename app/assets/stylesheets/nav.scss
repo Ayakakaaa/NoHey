@@ -12,7 +12,7 @@ nav{
   .notification-icon{
       font-size: 2em;
       padding-bottom: 0;
-      text-shadow: 2px 2px #afaaaa;
+      text-shadow: 1px 1px #afaaaa;
   }
   .notification-icon:hover{
     text-decoration: none; 
@@ -28,6 +28,20 @@ nav{
     background: red;
     color: white;
   }
+
+.u-name{
+  color: gray;
+  font-weight: bolder;
+  padding-left: 0.5em;
+}
+.u-name:hover{
+    color:black;
+    background: black;
+    text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
+    color: black;
+    background: black;
+    background-color: transparent;
+}
 
 @media only screen and (min-width: 768px) {
     

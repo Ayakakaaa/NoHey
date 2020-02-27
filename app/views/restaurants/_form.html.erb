@@ -2,12 +2,7 @@
   <% if restaurant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
-
-      <ul>
-        <% restaurant.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+      <%= render 'layouts/error_messages', model: form.object %>
     </div>
   <% end %>
 
@@ -75,6 +70,8 @@
     <%= form.submit 'Submit', class: 'btn-gradient-3d-orange' %>
   </div>
 <% end %>
+
+
 
 <script>
     // Documentation for selectize.js:

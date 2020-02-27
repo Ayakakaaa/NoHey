@@ -3,7 +3,7 @@
     const CURRENT_USER_ID = <%= current_user.id %>;
 </script>
 <div class="conversation-container">
-<div class="sender sender2">
+<div class="sender2">
     <%  @conversation.other_participants(current_user).each do |pa| %>
         <h1 class="sender-name"><%= link_to pa.first_name, user_path(pa) %></h1>
     <% end %>
@@ -48,6 +48,7 @@
 
 <div class="send-form">
     <%= form_with model: [@conversation, @new_message], remote: true do |form| %>
+        
         <%= form.text_area :content, placeholder: "type message here", autofocus: true, class:"message-box" %>
         <%= form.file_field :image %>
         <%= form.submit '📨', class: 'btn-gradient-3d-orange' %>
