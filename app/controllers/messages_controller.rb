@@ -7,6 +7,9 @@ class MessagesController < ApplicationController
         message.sender_id = current_user.id
         respond_to do |format|
             if message.save
+                # update timestamp to show user has checked the convo while sending this message
+                @conversation.user_conversations.where(user_id: current_user.id).touch_all
+
                 # ConversationChannel.broadcast_to(@conversation, content: message)
                 img_url = nil
                 if message.image.attached?

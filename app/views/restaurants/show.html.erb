@@ -56,17 +56,14 @@
       <div>
         <% @restaurant.likers.each do |liker| %>
           <div class="lists">
-            <% if liker.username != current_user %>
+            <% if liker.id != current_user.id %>
               <% if liker.images.attached? %>
                 <%= image_tag liker.images.first, class: "img-fit pic" %>
                 <%= link_to liker.username, user_path(liker), class: "middle aligned content" %>
               <% else %>
                 <%= image_tag "doggo_hey.jpeg", class: "img-fit pic" %>
-                <p><%= liker.username %></p>
+                <%= link_to liker.username, user_path(liker), class: "middle aligned content" %>
               <% end %>
-            <% else %>
-              <%= image_tag "doggo_hey.jpeg", class: "img-fit pic" %>
-              <%= link_to liker.username, user_path(liker), class: "middle aligned content" %>
             <% end %>
           </div>
         <% end %>

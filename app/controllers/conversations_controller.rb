@@ -15,6 +15,8 @@ class ConversationsController < ApplicationController
   def show
     @messages = @conversation.messages
     @new_message = Message.new
+    # update the timestamp to show the user has checked the convo at this time
+    @conversation.user_conversations.where(user_id: current_user.id).touch_all
   end
 
   # GET /conversations/new

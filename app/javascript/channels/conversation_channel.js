@@ -25,9 +25,11 @@ $(document).ready( function () {
 
       document.querySelector('#chat').classList.add("conversation-box")
 
-      const picture = document.createElement('img')
-      picture.classList.add('img-fit')
-      picture.setAttribute("src", image)
+      if (image) {
+        const picture = document.createElement('img')
+        picture.classList.add('img-fit')
+        picture.setAttribute("src", image)
+      }
 
       let avatar = document.createElement('div')
       avatar.classList.add('chat-pic')
@@ -58,11 +60,11 @@ $(document).ready( function () {
       mycomment.classList.add('mycomment')
       // console.log(mycomment)
 
-      const time1 = document.createElement('small')
+      const time1 = document.createElement('p')
       time1.classList.add('time1')
       time1.innerText = `${time_ago} ago`
 
-      const time2 = document.createElement('small')
+      const time2 = document.createElement('p')
       time2.classList.add('time2')
       time2.innerText = `${time_ago} ago`
 
@@ -80,7 +82,7 @@ $(document).ready( function () {
         item.appendChild(p)
         leftBox.appendChild(item)
         leftMessage.appendChild(leftBox)
-        leftMessage.appendChild(time)
+        leftMessage.appendChild(time1)
 
         // console.log(p)
         console.log(leftMessage)

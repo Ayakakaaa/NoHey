@@ -1,6 +1,6 @@
 class Message < ApplicationRecord
   
-  belongs_to :conversation
+  belongs_to :conversation, touch: true # update convo timestamp to show when latest message was sent
   belongs_to :sender, class_name: :User
 
   has_one_attached(:image)

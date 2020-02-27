@@ -14,9 +14,6 @@ class RequestsController < ApplicationController
             status: :pending
         )
         if request.save
-            conversation = Conversation.create()
-            UserConversation.create(conversation_id: conversation.id, user_id: @requested_user.id)
-            UserConversation.create(conversation_id: conversation.id, user_id: current_user.id)
             flash[:success] = "Requested to #{@requested_user.first_name}!"
         else 
             flash[:alert] = request.errors.full_messages.join(", ")
@@ -31,6 +28,11 @@ class RequestsController < ApplicationController
         else
             @request.status = "approved"
             if @request.save
+                # create a new conversation
+                conversation = Conversation.create()
+                UserConversation.create(conversation_id: conversation.id, user_id: @request.requested.id)
+                UserConversation.create(conversation_id: conversation.id, user_id: @request.requester.id)
+    
                 flash[:success] = "Approved #{@request.requested.first_name}"
                 redirect_to @request.requester
             else
