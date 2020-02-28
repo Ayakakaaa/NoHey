@@ -1,35 +1,38 @@
-<article>
-  <div>
-    <% unless @restaurant.tags.empty? %>
-    Tags: 
-      <% @restaurant.tags.each do |tag| %>
-          <%= link_to(
+<article class = "container1">
+  <%# <div> %>
+    <%#unless @restaurant.tags.empty? %>
+    <%# Tags:  %>
+      <%# @restaurant.tags.each do |tag| %>
+          <%#= link_to(
               tag.name, restaurants_path(tag: tag.name),
               class: 'badge badge-pill badge-primary'
           ) %>
-      <% end %>
-    <% end %>
-  </div>
+      <%# end %>
+    <%# end %>
+  <%# </div> %>
+  <h3> <%= @restaurant.name %></h3>
 
-  <div class = "show-info">
-    <h3> <%= @restaurant.name %></h3>
+
+  <div class = "show-container">
+
     <% if @restaurant.images.attached?  %>
-      <%= image_tag @restaurant.images.last %>
+      <%= image_tag @restaurant.images.last, class: "r-img" %>
     <% else %>
-      <%= image_tag "restaurants/restaurantWF.jpg",class: "img-fit" %>
+      <%= image_tag "restaurants/restaurantWF.jpg",class: "r-img" %>
     <% end %>
+  
     
     <div class="info-items">
       <div>
-        <small style="font-weight: lighter;">Adress:</small>
-        <p><%= @restaurant.address %></p>
-        <small><%= @restaurant.city %></small>
-        <small> <%= @restaurant.state %>,<%= @restaurant.country %></small>
-        <small><%= @restaurant.zip_code %></small>
+        <span style="font-weight: lighter; font-size: small;">Adress:</span>
+        <span><%= @restaurant.address %></span>
+        <span><%= @restaurant.city %></span>
+        <span> <%= @restaurant.state %>,<%= @restaurant.country %></span>
+        <span><%= @restaurant.zip_code %></span>
       </div>
 
       <div>
-        <small style="font-weight: lighter;">Phone:</small>
+        <span style="font-weight: lighter; font-size: small;">Phone:</span>
         <p><%= @restaurant.phone_number %></p>
       </div>
 
@@ -38,15 +41,13 @@
         <p><%=link_to @restaurant.website, @restaurant.website %></p>
       </div>
     </div>
+    <%if can? :crud, @restaurant %>
+    <div class="owner-b">
+      <%= button_to 'Delete', restaurant_path(@restaurant), method: :delete, class: 'btn-gradient-3d-orange' %>
+      <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: 'btn-gradient-3d-orange' %>
+    </div>
+    <% end %>
   </div>
-</article>
-
-  <%if can? :crud, @restaurant %>
-    <%= button_to 'Delete', restaurant_path(@restaurant), method: :delete, class: 'btn-gradient-3d-orange' %>
-    <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: 'btn-gradient-3d-orange' %>
-  
-  <% end %>
-
 
   <div class="like-member">
     <% if user_signed_in? %>
@@ -55,23 +56,24 @@
         <small><%= @restaurant.likers.length %> people are intrested in the restaurant</small>
       <div>
         <% @restaurant.likers.each do |liker| %>
-          <div class="lists">
+          <div class="likers">
             <% if liker.id != current_user.id %>
               <% if liker.images.attached? %>
                 <%= image_tag liker.images.first, class: "img-fit pic" %>
-                <%= link_to liker.username, user_path(liker), class: "middle aligned content" %>
+                <%= link_to liker.username, user_path(liker)%>
               <% else %>
                 <%= image_tag "doggo_hey.jpeg", class: "img-fit pic" %>
-                <%= link_to liker.username, user_path(liker), class: "middle aligned content" %>
+                <%= link_to liker.username, user_path(liker)%>
               <% end %>
             <% end %>
           </div>
         <% end %>
       </div>
     <% else %>
-      <%= button_to 'Like', restaurant_user_restaurants_path(@restaurant), method: :post , class: 'btn-gradient-3d-orange', style: 'background-image: linear-gradient(#fed6e3 0%, #ffaaaa 100%);'%>
+        <%= button_to 'Like', restaurant_user_restaurants_path(@restaurant), method: :post , class: 'like'%>
+      
       <% end %>
     <% end %>
   </div>
-
+</article>
   <%= link_to 'Back', restaurants_path %>

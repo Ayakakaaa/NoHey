@@ -77,7 +77,7 @@
     restaurants.each(function(i, val) {
       if ($(this).data("lat") != "" && $(this).data("lon") != "") {
         $(this).find(".distance").css("display", "visible");
-        $(this).find(".distance").text(`${distance($(this).data("lat"), $(this).data("lon"), position.coords.latitude, position.coords.longitude, "K").toFixed(2)} km away`);
+        $(this).find(".distance").text(`  / ✯ ${distance($(this).data("lat"), $(this).data("lon"), position.coords.latitude, position.coords.longitude, "K").toFixed(2)} km away`);
       }
     });
   }

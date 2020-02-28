@@ -12,7 +12,7 @@
 
   <body>
     <%= render 'layouts/nav' %>
-    <div class="inbody">
+   
   
     <% flash.each do |type, message| %>
       <div class="flash flash-<%= type %>">
@@ -30,6 +30,5 @@
 
     <%= yield %>
 
-    </div>
   </body>
 </html>

@@ -117,47 +117,43 @@
 }
 
 // show
-.show-restaurant{
-    padding: 1em;
-    align-items: center;
+
+.container1{
+    padding: 2em;
 }
-.show-info{
-    position: relative;
+.show-container {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fit minmax(5em, 1fr));
 }
-.info-items{
+.delete{
+
+}
+
+.like {
+    text-align: center;
+    display: inline-block;
+    padding: 0.2em 0.8em;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #ffffff;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px #c568b9;
+    text-align: center;
+    background-image: linear-gradient(#fed6e3 0%, #ffaaaa 100%);
+    width: 50%
     
 }
-.show-info .info-items{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%,-50%);
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    margin:0;
-    padding:1em;
-    color: white;
-    font-size: 30px;
-    border: 0.5px solid #ccc;
+
+.r-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 5px;
-    text-shadow: 1px 1px 0 #000,
-               -1px 1px 0 #000,
-               1px -1px 0 #000,
-               -1px -1px 0 #000;
-   
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
 }
-
-.like-member{
-    background-color: paleturquoise;
-    display: grid;
-    grid-template-columns: 1;
-}
-.lists{
-    display: grid;
-    grid-gap: 1em;
-    grid-template-columns: 1fr;
-}
-
 
 @media only screen and (min-width: 768px) {
 
@@ -167,9 +163,33 @@
         grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
     }
 
-    .lists{
-        grid-template-columns: repeat(auto-fill, minmax(5em, 1fr));
+    .container1{
+        padding: 4em;
+        display: grid;
+        grid-row: 1fr 1fr;
     }
- 
+
+    .show-container {
+        grid-template-columns: 40% 1fr 20%;
+        gap: 2em;
+    }
+    
+    .show-container .info-items {
+        grid-column: 2/3 ;
+    }
+    .r-img{
+        grid-column: 1/2;   
+    }
+
+    .owner-b{
+        grid-column: 3/4;
+        display: flex;
+        flex-direction: column;
+    }
+    .like{
+       margin-top: 3em;
+      
+    }
+    
 
 }
