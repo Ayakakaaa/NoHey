@@ -47,8 +47,9 @@
 </div>
 
 <div class="send-form">
-    <%= form_with model: [@conversation, @new_message], remote: true do |form| %>
-        
+    <%= form_with model: [@conversation, @new_message], :html => {:id =>"myform"}, remote: true do |form| %>
+<div id="error" style="visibility: hidden;"></div>
+
         <%= form.text_area :content, placeholder: "type message here", autofocus: true, class:"message-box" %>
         <%= form.file_field :image %>
         <%= form.submit '📨', class: 'btn-gradient-3d-orange' %>

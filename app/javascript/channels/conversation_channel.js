@@ -100,6 +100,8 @@ $(document).ready( function () {
           mycomment.appendChild(p)
         }
         console.log(mycomment)
+        $(document).find("send-form").prepend('<%= escape_javascript(render("shared/error_messages", :formats => [:html])) %>');
+
         document.getElementById("chat").appendChild(mycomment);
         document.getElementById("chat").appendChild(time2);
       }

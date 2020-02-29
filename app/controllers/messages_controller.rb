@@ -25,10 +25,12 @@ class MessagesController < ApplicationController
                 ActionCable.server.broadcast "conversation_channel_#{@conversation.id}", message: message, image: img_url, sender_image: sender_img_url, time_ago: time_ago
                 flash[:notice]="Message sent 📩"
                 format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
-                format.js 
+                format.js { render :create, locals: {success: true} }
             else
                 format.html { redirect_to @conversation, alert: message.errors.full_messages.join(", ") } 
                 format.json { render json: @conversation.errors }
+                @message = message
+                format.js { render :create, locals: {success: false} }
             end
         end
     end

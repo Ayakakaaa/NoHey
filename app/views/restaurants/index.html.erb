@@ -2,6 +2,8 @@
   <p> NO HEY </p>
 </div>
 
+
+<div class="paddings">
 <header class="header-restaurant">
   <% if can? :crud, @restaurant %>
     <%= link_to 'New Restaurant', new_restaurant_path, class: "new-restaurant" %>
@@ -24,7 +26,7 @@
   <% @restaurants.each do |restaurant| %>
     <div class = "restaurant" data-lat="<%= restaurant.lat %>" data-lon="<%= restaurant.lon %>" >
       <div class="title">
-        <h3> <%= restaurant.name %></h3> 
+        <h6><%= restaurant.name %></h6> 
         <small style="font-weight: lighter;">City:</small>
         <small><%= restaurant.city %></small>
         <small class="distance" style="display: hidden;"></small>
@@ -41,9 +43,12 @@
   <% end %>
 </article>
 
+</div>
+
 <script>
   function getLocation() {
     if (navigator.geolocation) {
+      console.log("inside geolocation check")
       navigator.geolocation.getCurrentPosition(showPosition);
     } else {
       console.log("Geolocation is not supported by this browser.");
@@ -51,6 +56,8 @@
   }
 
   function showPosition(position) {
+    console.log("given access to position")
+    console.log(`lat: ${position.coords.lat}; lat: ${position.coords.lon}`)
     function distance(lat1, lon1, lat2, lon2, unit) {
       if ((lat1 == lat2) && (lon1 == lon2)) {
         return 0;
@@ -81,5 +88,6 @@
       }
     });
   }
+  console.log("about to ask for location")
   $(document).ready(getLocation());
 </script>

@@ -1,0 +1,19 @@
+console.log((<%= success %>));
+{
+    const error_div = document.getElementById("error")
+    <% if success %>
+        error_div.innerText = "";
+        error_div.style.visibility = "hidden";
+        reset_form = document.getElementById("myform")
+        reset_form.reset();
+    <% else %>
+        const temp = document.createElement('textarea');
+        temp.innerHTML = "<%= @message.errors.full_messages.join(". ") %>";
+        const decoded = temp.value;
+
+        error_div.innerText = decoded;
+        error_div.style.visibility = "visible";
+        
+        console.log(decoded);
+    <% end %>
+}

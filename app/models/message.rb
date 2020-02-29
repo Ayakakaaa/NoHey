@@ -17,7 +17,7 @@ class Message < ApplicationRecord
 
   def no_hey
       if content&.downcase&.match(/\bhey\b/i) || content&.downcase&.match?(/\bhi\b/i) || content&.downcase&.match?(/\bhello\b/i)
-        self.errors.add(:content, "You can't use those word!")
+        self.errors.add(:content, "You can't use that word! No 'hey', 'hi', or 'hello'.")
       end
   end
     
