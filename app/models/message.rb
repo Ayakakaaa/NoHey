@@ -5,12 +5,19 @@ class Message < ApplicationRecord
 
   has_one_attached(:image)
 
-  validates :content, presence: true 
+  # validates :content, presence: true 
+  # validates :content, presence: true, unless: image.attached?
+  # validates :image, presence: true, unless: :content
+
+
+  validate :image_or_content
+
+ 
 
   validate(:no_hey)
 
-  # scope(:recent, lambda { order(created_at: :desc).limit(10) })
-  # scope(:recent, -> { order(created_at: :desc).limit(10) })
+  # scope(:recent, lambda { order(created_at: :desc).limit(num) })
+  scope(:recent, ->(num){ order(created_at: :desc).limit(num) })
 
 
   private
@@ -20,5 +27,16 @@ class Message < ApplicationRecord
         self.errors.add(:content, "You can't use that word! No 'hey', 'hi', or 'hello'.")
       end
   end
+
+  # def check_file_presence
+  #   errors.add(:image, "no file added") unless(image.attached? || content != nil)
+  # end
+
+  def image_or_content
+    # errors.add(:content, "hellooooo") unless(image.attached? || content == nil)
+    # bfgdgf
+    errors.add(:content, "image or message should be added") unless(image.attached? || content != "")
+  end
+
     
 end

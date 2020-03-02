@@ -25,8 +25,8 @@ $(document).ready( function () {
 
       document.querySelector('#chat').classList.add("conversation-box")
 
+      const picture = document.createElement('img')
       if (image) {
-        const picture = document.createElement('img')
         picture.classList.add('img-fit')
         picture.setAttribute("src", image)
       }

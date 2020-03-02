@@ -162,13 +162,13 @@
 .send-form{
   display: flex;
   justify-content: flex-end;
-  align-items: stretch;
+  // align-items: stretch;
 }
 form{
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-  gap: 0.5em;
+  gap: 1em;
 }
 
 

@@ -2,7 +2,7 @@
     const CONVERSATION_ID = <%= @conversation.id %>;
     const CURRENT_USER_ID = <%= current_user.id %>;
 </script>
-<div class="conversation-container">
+<div class="conversation-container paddings">
 <div class="sender2">
     <%  @conversation.other_participants(current_user).each do |pa| %>
         <h1 class="sender-name"><%= link_to pa.first_name, user_path(pa) %></h1>
@@ -10,7 +10,7 @@
 </div>
 
 <div id="chat" data-conversation-id="<%= @conversation.id %>" class="conversation-box">
-    <% @conversation.messages.each do |message| %>
+    <% @conversation.messages.recent(15).each do |message| %>
         <% if message.sender_id != current_user.id %>
             <div class='left-message'>
                 <div class="chat-pic">
@@ -48,8 +48,7 @@
 
 <div class="send-form">
     <%= form_with model: [@conversation, @new_message], :html => {:id =>"myform"}, remote: true do |form| %>
-<div id="error" style="visibility: hidden;"></div>
-
+    <div id="error" style="visibility: hidden;" class="error-m"></div>
         <%= form.text_area :content, placeholder: "type message here", autofocus: true, class:"message-box" %>
         <%= form.file_field :image %>
         <%= form.submit '📨', class: 'btn-gradient-3d-orange' %>

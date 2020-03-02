@@ -1,5 +1,5 @@
-<% requests.each do |request| %>
-    <div>
+<% requests.each do |request| %> 
+    <div class="paddings">
         <%=link_to request.requester.first_name, user_path(request.requester) %>
          <%if request.requester.images.attached? %>
             <%= image_tag request.requester.images.first, class: "icon-size" %>

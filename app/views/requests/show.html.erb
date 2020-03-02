@@ -1,4 +1,4 @@
-<div>
+<div class="paddings">
 <% users = conversation.users.where.not(id: current_user.id) %>
 <% sent_request = Request.find_by(requester_id: current_user.id, requested_id: users.first.id, status: :pending) %>
 <% received_request = Request.find_by(requester_id: users.first.id, requested_id: current_user.id, status: :pending) %>
