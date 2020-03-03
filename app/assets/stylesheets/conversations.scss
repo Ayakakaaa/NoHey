@@ -180,30 +180,47 @@ form{
 
 .c-members{
   display: grid;
-  grid-template-columns: 50% 1fr 30%;
+  grid-template-columns: 7% 23% 1fr 20% ;
   grid-template-rows: auto;
-  padding: 1em 0em 1em 4em;
-  gap: 1em;
-  border-bottom: darkslategrey;
+  gap: 0.5em;
+  border-bottom: 1px dotted darkslategrey;
+  padding: 1em 0em;
 }
 .p-image{
-  width: 6.5em;
-  height: 6.5em;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  width: 6.8em;
+  height: 6.8em;
   border-radius: 50%;
 }
-.pertner{
-  align-self: stretch;
+.pertner-name{
+  grid-column: 1/2;
+  grid-row: 1/2;
+  font-weight: bolder;
+  font-style: italic;
+}
+.last-update{
+ 
+  grid-column: 4/5;
+  grid-row: 1/2;
+}
+.last-message{
+  margin-left: 2em;
+  grid-column: 3/4;
+  grid-row: 1/2;
 }
 .no-contact{
   display: flex;
   flex-direction: column;
- 
 }
   
 @media only screen and (min-width: 768px) {
 
   .says{
     max-width: 100%;
+  }
+  .last-message{
+    margin-left: 0em;
   }
 
     

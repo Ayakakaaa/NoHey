@@ -33,6 +33,17 @@ super_user2 = User.create(
     images:[]
     # ["https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lead-short-summer-haircut-gettyimages-492416565-1556829330.jpg?crop=0.494xw:0.987xh;0.324xw,0&resize=640:*"]
 )
+super_user3 = User.create(
+    first_name: "Chris",
+    username: "Thor",
+    birth_date: "1983-08-11",
+    sex: "male",
+    email: "h@gmail.com",
+    password: PASSWORD,
+    is_admin: false,
+    images:[]
+    # ["https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lead-short-summer-haircut-gettyimages-492416565-1556829330.jpg?crop=0.494xw:0.987xh;0.324xw,0&resize=640:*"]
+)
 
 
 Restaurant.create(

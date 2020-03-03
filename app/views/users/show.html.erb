@@ -1,38 +1,40 @@
-<div class='container'>
-  <div class='profile'>
-    <h3 class='name'><%= @user.username %></h3>
+
+<div class='user-container'>
+  <div class="item-box">
     <% if @user.images.attached? %>
-      <%= image_tag(@user.images.last, class:'img-fit pic') %>
+        <%= image_tag @user.images.last, class: "u-pic" %>
     <% else %>
-          <%= image_tag 'icon2.jpeg', class: "icon-size" %>
+        <p>No pictures attached</p>
     <% end %>
-    <div class='info'>
-      <p><%= @user.sex %></p>
-      <p><%= @user.age %> years old</p>
-      <% if @user == current_user %>
-        <span><%= link_to 'Edit Your Profile', edit_user_registration_path %></span>
-      <% end %>
   </div>
-</div>
- <p class='request-button'>
+
+  <div class='user-info item-box'>
+    <h3 style='font-weight: bold;'><%= @user.first_name %></h3>
+    <p>(username:<%= @user.username %>)</p>
+    <p><%= @user.sex %></p>
+    <p><%= @user.age %> years old</p>
+    <% if @user == current_user %>
+      <span><%= link_to 'Edit Your Profile', edit_user_registration_path %></span>
+    <% end %>
     <% if @user != current_user %>
       <% if @request.present? %>
-        <%= button_to 'Cancel Request', request_path(@request), method: :delete %>
+        <%= button_to 'Cancel Request', request_path(@request), method: :delete, class: "unrequest-button" %>
       <% else %>
-        <%= button_to 'Request', user_requests_path(@user), method: :post %>
-      <% end %>
-    <% end %>
-  </p>
-
-  <div class="box">
-   <% if @user.images.attached? %>
-      <% @user.images.each do |img|%>
-      <div style=" position: relative; ">
-      <% if @user == current_user %>
-        <%= link_to "X", destroy_user_image_path(img), method: "delete", class:"close" %>
-      <% end %>
-      <%= image_tag img, class: "images" %>
-      </div>
+        <%= button_to 'Request', user_requests_path(@user), method: :post, class: "request-button" %>
       <% end %>
     <% end %>
   </div>
+</div>
+
+<div class="box"> 
+  <%if @user.images.attached? %>
+    <% @user.images.each do |img|%>
+    <div style=" position: relative; ">
+    <%if @user == current_user %>
+      <%= link_to "X", destroy_user_image_path(img), method: "delete", class:"close" %>
+    <% end %>
+    <%= image_tag img, class: "images" %>
+    </div> 
+    <% end %>
+  <% end %>
+</div>

@@ -11,33 +11,38 @@
 <% @conversations.each do |conversation| %>
     <% users = conversation.users.where.not(id: current_user.id) %>
     <% users.each do |user| %>
-        <div class="c-members">
-            <% if user.images.attached? %>
-                <%= image_tag user.images.first, class:"p-image" %>            
-                <%= link_to user.first_name, conversation_path(conversation), class: "pertner" %>
-                <small><%= time_ago_in_words(conversation.updated_at)%> ago</small>
-            <% else %>
-                <%= image_tag 'icon2.jpg', class:"p-image" %>
-                <%= link_to user.first_name, conversation_path(conversation), class: "pertner" %>
-                <small><%= time_ago_in_words(conversation.updated_at)%> ago</small>
+    <div class="c-members">
+        <% if user.images.attached? %>
+            <%= image_tag user.images.first, class:"p-image" %>            
+            <%= link_to user.first_name, conversation_path(conversation), class: "pertner-name" %>
+            <small class="last-update"><%= time_ago_in_words(conversation.updated_at)%> ago</small>
+        <% else %>
+            <%= image_tag 'icon2.jpg', class:"p-image" %>
+            <%= link_to user.first_name, conversation_path(conversation), class: "pertner-name" %>
+            <small class="last-update"><%= time_ago_in_words(conversation.updated_at.strftime('%H:%M'))%> ago</small>
+        <% end %>
+        <% end %>
+        <% if conversation.messages.length %>
+            <div class="last-message">
+                <span <% if unchecked_conversations.where(conversation_id: conversation.id).present? %>
+                    style="font-weight: bold;"
+                <% end %>>
+                <%= truncate(conversation.messages.last.content, length: 30, separator: " ")%>
+                </span><br>
+                <% if conversation.messages.last.sender.first_name == current_user.first_name %>
+                    <p>- last message : you -</p><br>
+                <% else %>
+                    by <%= conversation.messages.last.sender.first_name %><br>
+                <% end %>
+                <% convo_missed_messages = unchecked_conversations.joins("LEFT JOIN messages ON (user_conversations.conversation_id = messages.conversation_id) AND (user_conversations.updated_at < messages.updated_at)").where(conversation_id: conversation.id) %>
+                <% if convo_missed_messages.present? %>
+                <small style="color:#e06377;">
+                    <%= convo_missed_messages.length %> missed messages
+                </small>
+                <% end %>
             <% end %>
         </div>
-    <% end %>
-    <% if conversation.messages.length %>
-        <span <% if unchecked_conversations.where(conversation_id: conversation.id).present? %>
-            style="font-weight: bold;"
-        <% end %>>
-        <%= truncate(conversation.messages.last.content, length: 30, separator: " ")%>
-        </span>
-        by <%= conversation.messages.last.sender.first_name %>
-        <% convo_missed_messages = unchecked_conversations.joins("LEFT JOIN messages ON (user_conversations.conversation_id = messages.conversation_id) AND (user_conversations.updated_at < messages.updated_at)").where(conversation_id: conversation.id) %>
-        <% if convo_missed_messages.present? %>
-          <span class="">
-            <%= convo_missed_messages.length %> missed messages
-          </span>
-        <% end %>
-
-    <% end %>
+    </div>
 <% end %>
 </div>
 
