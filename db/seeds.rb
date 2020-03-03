@@ -59,6 +59,19 @@ Restaurant.create(
     website: "whitespot.ca",
     images: []
 )
+Restaurant.create(
+    name: "The Keg Steakhouse + Bar",
+    country: "Canada",
+    state: "BC",
+    city: "Port Coquitlam",
+    zip_code: "V6B 1N3",
+    address: "688 Dunsmuir St",
+    lat: 49.2760753,
+    lon: -123.126459,
+    phone_number: "604-685-7502",
+    website: "kegsteakhouse.com",
+    images: []
+)
 
 Restaurant.create(
     name: "Joe Fortes Seafood & Chop House",
@@ -71,6 +84,71 @@ Restaurant.create(
     lon: -123.1247733,
     phone_number: "604-669-1940",
     website: "joefortes.ca",
+    images: []
+)
+Restaurant.create(
+    name: "Blue Water Cafe",
+    country: "Canada",
+    state: "BC",
+    city: "Vancouver",
+    zip_code: "V6B 5T4",
+    address: "1095 Hamilton St",
+    lat: 49.2754369,
+    lon: -123.1625507,
+    phone_number: "604-688-8078",
+    website: "bluewatercafe.net",
+    images: []
+)
+Restaurant.create(
+    name: "Medina",
+    country: "Canada",
+    state: "BC",
+    city: "Vancouver",
+    zip_code: "V6B 3A4",
+    address: "780 Richards St",
+    lat: 49.280499,
+    lon: -123.1190443,
+    phone_number: "604-879-3114",
+    website: "medinacafe.com",
+    images: []
+)
+Restaurant.create(
+    name: "Botanist",
+    country: "Canada",
+    state: "BC",
+    city: "Vancouver",
+    zip_code: "V6C 0B9",
+    address: "1038 Canada Pl",
+    lat: 49.2882223,
+    lon: -123.1192751,
+    phone_number: "604-695-5500",
+    website: "botanistrestaurant.com",
+    images: []
+)
+Restaurant.create(
+    name: "Cactus Club Cafe Coal Harbour",
+    country: "Canada",
+    state: "BC",
+    city: "Vancouver",
+    zip_code: "V6C 3E1",
+    address: "1085 Canada Pl",
+    lat: 49.2760779,
+    lon: -123.126459,
+    phone_number: "604-620-7410",
+    website: "cactusclubcafe.com",
+    images: []
+)
+Restaurant.create(
+    name: "JOEY Burrard",
+    country: "Canada",
+    state: "BC",
+    city: "Vancouver",
+    zip_code: "V6Z 1X9",
+    address: "820 Burrard St",
+    lat: 49.2827993,
+    lon: -123.1253725,
+    phone_number: "604-683-5639",
+    website: "joeyrestaurants.com",
     images: []
 )
 
@@ -101,6 +179,37 @@ Restaurant.create(
     website: "kairestaurant.ca",
     images:[]
 )
+
+
+Restaurant.create(
+    name: "Brenda's French Soul Food",
+    country: "USA",
+    state: "CA",
+    city: "San Francisco",
+    zip_code: "94102",
+    address: "652 Polk St",
+    lat: 37.7838104,
+    lon: -122.4173238,
+    phone_number: "(415) 345-8100",
+    website: "frenchsoulfood.com",
+    images:[]
+)
+
+Restaurant.create(
+    name: "MONTESACRO Pinseria SF",
+    country: "USA",
+    state: "CA",
+    city: "San Francisco",
+    zip_code: "94103",
+    address: "510 Stevenson St",
+    lat: 37.7931879,
+    lon: -122.3976471,
+    phone_number: "(415) 795-3040",
+    website: "montesacrosf.com",
+    images:[]
+)
+
+    
 
 sex = ["female", "male", "other"].sample
 

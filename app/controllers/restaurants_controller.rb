@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :authorize!, only: [:create, :edit,:update, :destroy]
 
@@ -35,6 +35,7 @@ class RestaurantsController < ApplicationController
       @likers = @restaurant.likers.where.not(id: current_user.id)
       @user_restaurant = @restaurant.user_restaurants.find_by(user: current_user)
     end
+
   end
 
   # GET /restaurants/new

@@ -18,7 +18,7 @@
     <% end %>
     <% if @user != current_user %>
       <% if(@sent_request.present? && @sent_request.status == "pending") %>
-        <%= button_to 'Cancel Request', request_path(@request), method: :delete, class: "unrequest-button" %>
+        <%= button_to 'Cancel Request', request_path(@sent_request), method: :delete, class: "unrequest-button" %>
       <% elsif(!@sent_request.present? && !@received_request.present?) %>
         <%= button_to 'Request', user_requests_path(@user), method: :post, class: "request-button" %>
       <% end %>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :find_user, only: [:show, :edit, :image_destroy]
-    before_action :authorize!
+    before_action :authorize!, only: [:edit, :image_destroy]
 
     def show
         @sent_request = Request.where(requester_id: current_user.id, requested_id: @user.id).last

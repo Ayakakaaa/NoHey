@@ -35,10 +35,11 @@
         <small class="distance" style="display: hidden;"></small>
       </div>
       <div>
+        <% img = ["restaurants/restaurantWF.jpg", "restaurants/WH.jpg", "restaurants/kai.jpg", "restaurants/WF.jpg","restaurants/restaurant1.jpg","restaurants/restaurant2.jpg"].sample %>
         <% if restaurant.images.attached?  %>
           <%= image_tag restaurant.images.last, class: "img-fit pic-restaurant" %>
         <% else %>
-          <%= image_tag "restaurants/restaurantWF.jpg", class: "img-fit pic-restaurant" %>
+          <%= image_tag img, class: "img-fit pic-restaurant" %>
         <% end %>
       </div>
       <%= link_to 'Interested', restaurant_path(restaurant), class: "interested" %>

@@ -26,11 +26,11 @@
       <% else %>
         <%= button_to 'Like', restaurant_user_restaurants_path(@restaurant), method: :post , class: 'like'%>
       <% end %>
-
+      <% img = ["restaurants/restaurantWF.jpg", "restaurants/WH.jpg", "restaurants/kai.jpg", "restaurants/WF.jpg","restaurants/restaurant1.jpg","restaurants/restaurant2.jpg"].sample %>
       <% if @restaurant.images.attached?  %>
         <%= image_tag @restaurant.images.last, class:"restaurant-pic" %>
       <% else %>
-        <%= image_tag "restaurants/restaurantWF.jpg", class:"restaurant-pic" %>
+        <%= image_tag img, class:"restaurant-pic" %>
       <% end %>
   
     
@@ -50,7 +50,7 @@
 
       <div class="web">
         <small style="font-weight: lighter;">Website: </small>
-        <p><%=link_to @restaurant.website, @restaurant.website %></p>
+        <p><%=link_to @restaurant.website, "http://#{@restaurant.website}" %></p>
       </div>
     </div>
   </div>
@@ -79,8 +79,9 @@
                     <%= liker.username %>
                   <% end %>
                 <% else %>
+                <% person = ["doggo_hey.jpeg","people/catman.jpeg", "people/glassesboy.jpg", "people/woman1.jpg", "people/women2.jpg","people/women3.jpg","people/man1.jpg","people/man2.jpg","people/man3.jpg","people/man4.jpg"].sample %>
                   <%= link_to user_path(liker) do %>
-                    <%= image_tag "doggo_hey.jpeg", class: "likers" %>
+                    <%= image_tag person, class: "likers" %>
                   <% end %>
                   <%= liker.username %>
                 <% end %>
