@@ -10,7 +10,7 @@
 </div>
 
 <div id="chat" data-conversation-id="<%= @conversation.id %>" class="conversation-box">
-    <% @conversation.messages.recent(15).each do |message| %>
+    <% @messages.each do |message| %>
         <% if message.sender_id != current_user.id %>
             <div class='left-message'>
                 <div class="chat-pic">

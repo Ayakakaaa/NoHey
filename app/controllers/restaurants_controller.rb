@@ -8,12 +8,19 @@ class RestaurantsController < ApplicationController
   # GET /restaurants.json
   def index
     # @restaurants = Restaurant.all
-    if params[:tag]
-        @tag = Tag.find_or_initialize_by(name: params[:tag])
-        @restaurants = @tag.Restaurants.order(created_at: :desc)
-    else
-        @restaurants = Restaurant.order(created_at: :desc)
-    end
+    # if params[:tag]
+    #     @tag = Tag.find_or_initialize_by(name: params[:tag])
+    #     @restaurants = @tag.Restaurants.order(created_at: :desc)
+    # else
+        if(!!params["lat"] && !!params["lon"])
+          user_lat = params["lat"].to_f
+          user_lon = params["lon"].to_f
+          # use our googled order by here
+          @restaurants = Restaurant.order("( acos( cos( radians(#{user_lat}) ) * cos( radians( lat ) ) * cos( radians(lon) - radians(#{user_lon})) + sin(radians(#{user_lat})) * sin( radians(lat)))) ASC")
+        else
+          @restaurants = Restaurant.order(created_at: :desc)
+        end
+    # end
     respond_to do |format|
         format.html { render :index }
         format.json { render json: @restaurants }

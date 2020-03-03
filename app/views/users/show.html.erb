@@ -17,9 +17,9 @@
       <span><%= link_to 'Edit Your Profile', edit_user_registration_path %></span>
     <% end %>
     <% if @user != current_user %>
-      <% if @request.present? %>
+      <% if(@sent_request.present? && @sent_request.status == "pending") %>
         <%= button_to 'Cancel Request', request_path(@request), method: :delete, class: "unrequest-button" %>
-      <% else %>
+      <% elsif(!@sent_request.present? && !@received_request.present?) %>
         <%= button_to 'Request', user_requests_path(@user), method: :post, class: "request-button" %>
       <% end %>
     <% end %>

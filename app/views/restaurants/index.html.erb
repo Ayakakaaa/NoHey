@@ -18,6 +18,9 @@
             </span>
         </h6>
     <% end %>
+  </div>  
+  <div id="search_nearest">
+    <%= link_to "order by nearest", restaurants_path, style: "display:none;", id: "nearest_button" %>
   </div>
 </header>
 
@@ -57,7 +60,10 @@
 
   function showPosition(position) {
     console.log("given access to position")
-    console.log(`lat: ${position.coords.lat}; lat: ${position.coords.lon}`)
+    const user_lat = position.coords.latitude;
+    const user_lon = position.coords.longitude;
+    console.log(`lat: ${user_lat}; lat: ${user_lon}`)
+
     function distance(lat1, lon1, lat2, lon2, unit) {
       if ((lat1 == lat2) && (lon1 == lon2)) {
         return 0;
@@ -82,11 +88,17 @@
 
     const restaurants = $(".restaurant");
     restaurants.each(function(i, val) {
-      if ($(this).data("lat") != "" && $(this).data("lon") != "") {
+      const rest_lat = $(this).data("lat");
+      const rest_lon = $(this).data("lon");
+      if (rest_lat != "" && rest_lon != "") {
         $(this).find(".distance").css("display", "visible");
-        $(this).find(".distance").text(`  / ✯ ${distance($(this).data("lat"), $(this).data("lon"), position.coords.latitude, position.coords.longitude, "K").toFixed(2)} km away`);
+        $(this).find(".distance").text(`  / ✯ ${distance(rest_lat, rest_lon, user_lat, user_lon, "K").toFixed(2)} km away`);
       }
     });
+    // make search by nearest visible and populate params
+    const button = $("#nearest_button");
+    button.attr("href", `${button.attr("href")}?lat=${user_lat}&lon=${user_lon}`);
+    button.show();
   }
   console.log("about to ask for location")
   $(document).ready(getLocation());

@@ -112,7 +112,7 @@ sex = ["female", "male", "other"].sample
         username: username,
         birth_date: "2000-01-01",
         sex: sex, 
-        email: "#{first_name.downcase}@example.com",
+        email: "#{first_name.downcase}@gmail.com",
         password: PASSWORD,
         images:[]
     )

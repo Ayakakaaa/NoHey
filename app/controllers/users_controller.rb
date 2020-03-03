@@ -4,7 +4,8 @@ class UsersController < ApplicationController
     before_action :authorize!
 
     def show
-        @request = Request.where(requester_id: current_user.id, requested_id: @user.id).last
+        @sent_request = Request.where(requester_id: current_user.id, requested_id: @user.id).last
+        @received_request = Request.where(requester_id: @user.id, requested_id: current_user.id).last
     end
 
     def edit

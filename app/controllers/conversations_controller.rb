@@ -13,7 +13,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   # GET /conversations/1.json
   def show
-    @messages = @conversation.messages
+    @messages = @conversation.messages.order(created_at: :ASC)
     @new_message = Message.new
     # update the timestamp to show the user has checked the convo at this time
     @conversation.user_conversations.where(user_id: current_user.id).touch_all
