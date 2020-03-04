@@ -61,6 +61,12 @@ class ConversationsController < ApplicationController
   # DELETE /conversations/1
   # DELETE /conversations/1.json
   def destroy
+    other_users = @conversation.users.where.not(id: current_user.id)
+    other_users.each do |user|
+      Request.where(requester_id: user.id, requested_id: current_user.id)
+        .or(Request.where(requester_id: current_user.id, requested_id: user.id))
+        .destroy_all
+    end
     @conversation.destroy
     respond_to do |format|
       format.html { redirect_to conversations_url, notice: 'Conversation was successfully destroyed.' }

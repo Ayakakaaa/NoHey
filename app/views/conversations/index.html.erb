@@ -15,11 +15,17 @@
         <% if user.images.attached? %>
             <%= image_tag user.images.first, class:"p-image" %>            
             <%= link_to user.first_name, conversation_path(conversation), class: "pertner-name" %>
-            <small class="last-update"><%= time_ago_in_words(conversation.messages.last.updated_at)%> ago</small>
+            <% if conversation.messages.length > 0 %>
+                <small class="last-update"><%= time_ago_in_words(conversation.messages.last.updated_at) %> ago</small>
+            <% end %>
+            <%= button_to "🗑️", conversation_path(conversation), method: :delete %>
         <% else %>
             <%= image_tag 'icon2.jpg', class:"p-image" %>
             <%= link_to user.first_name, conversation_path(conversation), class: "pertner-name" %>
-            <small class="last-update"><%= time_ago_in_words(conversation.messages.last.updated_at)%> ago</small>
+            <% if conversation.messages.length > 0 %>
+                <small class="last-update"><%= time_ago_in_words(conversation.messages.last.updated_at) %> ago</small>
+            <% end %>
+            <%= button_to "🗑️", conversation_path(conversation), method: :delete %>
         <% end %>
         <% end %>
         <% if conversation.messages.length > 0 %>
