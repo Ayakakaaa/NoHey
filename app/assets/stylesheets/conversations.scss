@@ -160,16 +160,33 @@
 }
 //message-box
 .send-form{
+  margin-top: 5em;
   display: flex;
-  justify-content: flex-end;
-  // align-items: stretch;
+  flex-direction: column;
+  align-items: flex-end;
 }
-form{
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  gap: 1em;
+// form{
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   grid-template-rows: auto;
+//   gap: 1em;
+// }
+.send-form form{
+  display: flex;
+  flex-direction: column;
+  width: 21em;
 }
+
+form > textarea{
+  margin-bottom: 1em;
+}
+.s{
+  margin-top: 0.9em;
+  margin-bottom: 0.9em;
+  width: 13em;
+}
+
+
 
 
 //index
@@ -200,7 +217,6 @@ form{
   font-style: italic;
 }
 .last-update{
- 
   grid-column: 4/5;
   grid-row: 1/2;
 }
@@ -213,6 +229,14 @@ form{
   display: flex;
   flex-direction: column;
 }
+.non{
+  text-decoration: none;
+  border: none;
+  width: 2em;
+  height: 2em;
+  margin-top: 5em;
+}
+
   
 @media only screen and (min-width: 768px) {
 

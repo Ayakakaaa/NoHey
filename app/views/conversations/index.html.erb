@@ -18,15 +18,15 @@
             <% if conversation.messages.length > 0 %>
                 <small class="last-update"><%= time_ago_in_words(conversation.messages.last.updated_at) %> ago</small>
             <% end %>
-            <%= button_to "🗑️", conversation_path(conversation), method: :delete %>
+            <%#= button_to "🗑️", conversation_path(conversation), method: :delete, class: 'non' %>
         <% else %>
             <%= image_tag 'icon2.jpg', class:"p-image" %>
             <%= link_to user.first_name, conversation_path(conversation), class: "pertner-name" %>
             <% if conversation.messages.length > 0 %>
                 <small class="last-update"><%= time_ago_in_words(conversation.messages.last.updated_at) %> ago</small>
             <% end %>
-            <%= button_to "🗑️", conversation_path(conversation), method: :delete %>
         <% end %>
+        <span class="last-update"><%= button_to "🗑️", conversation_path(conversation), method: :delete, class: 'non'%></span>
         <% end %>
         <% if conversation.messages.length > 0 %>
             <div class="last-message">

@@ -18,7 +18,11 @@ nav{
     text-decoration: none; 
 
   }
-  
+.pointing{
+  padding: 0.5em;
+  align-items: center;
+  justify-items: right;
+}
   .notification .badge {
     position: absolute;
     top: 0.05em;
@@ -32,7 +36,7 @@ nav{
 .u-name{
   color: gray;
   font-weight: bolder;
-  padding-left: 0.5em;
+  padding-left: 0.6em;
 }
 .u-name:hover{
     color:black;
