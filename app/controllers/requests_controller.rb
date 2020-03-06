@@ -33,7 +33,7 @@ class RequestsController < ApplicationController
                 UserConversation.create(conversation_id: conversation.id, user_id: @request.requested.id)
                 UserConversation.create(conversation_id: conversation.id, user_id: @request.requester.id)
     
-                flash[:success] = "Approved #{@request.requested.first_name}"
+                flash[:success] = "Approved #{@request.requester.first_name}"
                 redirect_to @request.requester
             else
                 flash[:danger] = "You can't approve this request!"

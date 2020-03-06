@@ -7,16 +7,20 @@ class ConversationsController < ApplicationController
   def index
     # @requests = Request.find 
     # @status = 
-    @conversations = current_user.conversations
+    @conversations = current_user.conversations.order(updated_at: :DESC)
   end
 
   # GET /conversations/1
   # GET /conversations/1.json
   def show
-    @messages = @conversation.messages.order(created_at: :ASC)
-    @new_message = Message.new
-    # update the timestamp to show the user has checked the convo at this time
-    @conversation.user_conversations.where(user_id: current_user.id).touch_all
+    if !@conversation.present?
+      redirect_to conversations_path
+    else
+      @messages = @conversation.messages.order(created_at: :ASC)
+      @new_message = Message.new
+      # update the timestamp to show the user has checked the convo at this time
+      @conversation.user_conversations.where(user_id: current_user.id).touch_all
+    end
   end
 
   # GET /conversations/new
@@ -77,7 +81,7 @@ class ConversationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conversation
-      @conversation = Conversation.find(params[:id])
+      @conversation = Conversation.find_by(id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
